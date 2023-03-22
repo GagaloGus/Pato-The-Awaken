@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - suelo
+  - coin
+  - duck
+  - End level
+  - startMenuClick
   layers:
   - Default
   - TransparentFX
@@ -41,4 +45,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Canvas
+    uniqueID: 4173534319
     locked: 0

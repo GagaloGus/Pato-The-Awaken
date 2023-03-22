@@ -29,13 +29,18 @@ public class Player_Controller : MonoBehaviour
     {
         BoxCasting();
 
-        if (ableToMove)
+        if (ableToMove && StartMenu.gameStarted && !PauseMenu.isPaused)
         {
             rb.velocity = new Vector2(speed, rb.velocity.y);
             Jump();
         }
 
         camera_GO.transform.position = new Vector3(transform.position.x, camera_GO.transform.position.y, camera_GO.transform.position.z);
+
+        if(transform.position.y < -2)
+        {
+            GameManager.instance.ChangeScene("Test_Gabo");
+        }
     }
     void BoxCasting()
     {
@@ -73,5 +78,23 @@ public class Player_Controller : MonoBehaviour
         //si suelto el espacio no estoy saltando
         if (Input.GetKeyUp(KeyCode.Space)) { isJumping = false; }
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("coin"))
+        {
+            GameManager.instance.gm_coins++;
+            Destroy(collision.gameObject);
+        }
+        if (collision.CompareTag("duck"))
+        {
+            GameManager.instance.gm_ducks++;
+            Destroy(collision.gameObject);
+        }
+        if (collision.CompareTag("End level"))
+        {
+            GameManager.instance.NextLevel("Test_Gabo");
+        }
     }
 }
