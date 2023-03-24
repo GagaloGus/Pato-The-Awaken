@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     uint coins, ducks, level = 1;
+    public bool gameStarted;
     void Awake()
     {
         if (!instance) //comprueba que instance no tenga informacion
@@ -18,17 +19,21 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        gameStarted = false;
     }
 
     public void ChangeScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
         ducks = 0;
+        gameStarted = false;
     }
     public void NextLevel(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
         ducks = 0; level++;
+        gameStarted = false;
     }
 
     public uint gm_coins

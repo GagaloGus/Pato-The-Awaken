@@ -29,7 +29,7 @@ public class Player_Controller : MonoBehaviour
     {
         BoxCasting();
 
-        if (ableToMove && StartMenu.gameStarted && !PauseMenu.isPaused)
+        if (ableToMove && !PauseMenu.isPaused && GameManager.instance.gameStarted)
         {
             rb.velocity = new Vector2(speed, rb.velocity.y);
             Jump();

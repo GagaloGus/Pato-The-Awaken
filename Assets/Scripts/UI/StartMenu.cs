@@ -4,24 +4,21 @@ using UnityEngine;
 
 public class StartMenu : MonoBehaviour
 {
-    public GameObject pauseButton, startMenu;
-    public static bool gameStarted;
-    void Start()
-    {
-        gameStarted = false;
-        pauseButton.SetActive(false);
-    }
-
+    public GameObject startMenu, startLogo;
+    bool clicked_start;
     // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        startMenu.SetActive(!gameStarted);
-        print(gameStarted + " " + PauseMenu.isPaused);
+        startMenu.SetActive(true);
+        clicked_start = false;
+        startLogo = FindObjectOfType<StartLogo>().gameObject;
     }
-
     public void StartLevel()
     {
-        gameStarted = true;
-        pauseButton.SetActive(true);
+        if (!clicked_start)
+        {
+            startLogo.GetComponent<Animator>().Play("startlogo_leave");
+            clicked_start = true;
+        }
     }
 }
