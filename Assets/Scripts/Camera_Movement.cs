@@ -6,8 +6,6 @@ public class Camera_Movement : MonoBehaviour
 {
     public int MoveX;
     public bool CanMove;
-    public GameObject Player;
-    public GameObject AlertPrefab;
     void Start()
     {
         

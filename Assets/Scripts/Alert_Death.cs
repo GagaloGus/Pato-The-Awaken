@@ -9,11 +9,27 @@ public class Alert_Death : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
-    private void OnTriggerStay2D(Collider2D Collider)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Collider.CompareTag("Player"))
+        if (collision.gameObject.tag == "Alert")
         {
-            animator.Play("Alert_Animation");
+            collision.GetComponent<Animator>().Play("Alert_Animation");
+        }
+
+        if (collision.gameObject.tag == "Camera_Death")
+        {
+            FindObjectOfType<Camera_Movement>().CanMove = false;
+            //collision.GetComponent<Animator>().Play("Death_Animation");
         }
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Alert")
+        {
+            collision.GetComponent<Animator>().Play("Alert_Iddle_Animation");
+        }
+    }
+
 }
+

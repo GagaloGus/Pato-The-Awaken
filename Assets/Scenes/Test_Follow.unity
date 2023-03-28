@@ -302,6 +302,8 @@ GameObject:
   - component: {fileID: 455031772}
   - component: {fileID: 455031771}
   - component: {fileID: 455031773}
+  - component: {fileID: 455031775}
+  - component: {fileID: 455031774}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -402,6 +404,39 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &455031774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455031770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89ae9b5658fba3b408ff30b9d298dd84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &455031775
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455031770}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &903968047
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,8 +538,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveX: 3
   CanMove: 1
-  Player: {fileID: 455031770}
-  AlertPrefab: {fileID: 3724390485019484782}
 --- !u!1 &1126517997
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,7 +856,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3724390485019484782}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.02, y: 0, z: 0}
+  m_LocalPosition: {x: -8.02, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -842,10 +875,9 @@ GameObject:
   - component: {fileID: 8158151747666918289}
   - component: {fileID: 5537205623719786967}
   - component: {fileID: 8158151747666918291}
-  - component: {fileID: 8158151747666918290}
   m_Layer: 0
   m_Name: Alert
-  m_TagString: Untagged
+  m_TagString: Alert
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -922,18 +954,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8158151747666918290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3724390485019484782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18edc3232bf3a3e45bb9c87f49d7dbca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &8158151747666918291
 BoxCollider2D:
   m_ObjectHideFlags: 0
