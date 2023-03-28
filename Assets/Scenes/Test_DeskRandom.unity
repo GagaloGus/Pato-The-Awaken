@@ -239,11 +239,10 @@ MonoBehaviour:
   allDesks:
   - {fileID: 4135559913259133166, guid: 02d988206aa40734abc3af2a5a103cc1, type: 3}
   - {fileID: 5097312472530059980, guid: d856bf244b268394aa7a87649a089bd2, type: 3}
-  - {fileID: 6340704355555101423, guid: 3213fde30217535478d71c2915e2d90a, type: 3}
-  - {fileID: 8271959966348259291, guid: cee95a4715195104bb7edbf3f00e671e, type: 3}
-  - {fileID: 3618902808244761453, guid: 23568595a059e9645bb00bed95a7a916, type: 3}
   shuffledDesks: []
-  amountDesksGenerated: 20
+  mesaInicio: {fileID: 5097312472530059980, guid: ba47e82a7b8b91e4ebd4d813ee712b96, type: 3}
+  mesaFinal: {fileID: 5097312472530059980, guid: 6bac4fbab4605304cab68ab8c497d54f, type: 3}
+  amountDesksGenerated: 200
 --- !u!4 &1795899640
 Transform:
   m_ObjectHideFlags: 0
