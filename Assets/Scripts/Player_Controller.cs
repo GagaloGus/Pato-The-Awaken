@@ -6,22 +6,19 @@ public class Player_Controller : MonoBehaviour
 {
     public bool ableToMove, isGrounded, isJumping;
 
-    public float speed, 
-        jumpPower = 15, jumpTimeCounter;
+    public float jumpPower = 15, jumpTimeCounter;
 
     Rigidbody2D rb;
     public BoxCollider2D boxCol;
-
-    public GameObject camera_GO;
     LayerMask groundLayerMask;
+
+    GameObject maincamera;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); boxCol = GetComponent<BoxCollider2D>();
-
-        camera_GO = GameObject.FindGameObjectWithTag("MainCamera");
-
         groundLayerMask = LayerMask.GetMask("Ground");
+        maincamera = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
     // Update is called once per frame
@@ -31,16 +28,24 @@ public class Player_Controller : MonoBehaviour
 
         if (ableToMove && !PauseMenu.isPaused && GameManager.instance.gameStarted)
         {
-            rb.velocity = new Vector2(speed, rb.velocity.y);
+            rb.velocity = new Vector2(MaintainVelocity(), rb.velocity.y);
             Jump();
         }
 
-        camera_GO.transform.position = new Vector3(transform.position.x, camera_GO.transform.position.y, camera_GO.transform.position.z);
+        //maincamera.transform.position = new Vector3(maincamera.transform.position.x, transform.position.y + 2.5f, -10);
 
         if(transform.position.y < -2)
         {
             GameManager.instance.ChangeScene("Test_Gabo");
         }
+    }
+    float MaintainVelocity()
+    {
+        float newVel;
+
+        newVel = -transform.position.x / 2;
+
+        return newVel;
     }
     void BoxCasting()
     {

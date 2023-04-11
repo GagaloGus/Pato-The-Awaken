@@ -7,6 +7,8 @@ public class Desk_Random : MonoBehaviour
     public GameObject[] allDesks, shuffledDesks;
     public GameObject mesaInicio, mesaFinal;
     public int amountDesksGenerated;
+
+    public Transform deskParent;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +34,7 @@ public class Desk_Random : MonoBehaviour
         //instancia las mesas generadas para que esten en fila
         for(int i = 0; i < shuffledDesks.Length; i++)
         {
-            GameObject desk = Instantiate(shuffledDesks[i], Vector2.zero, Quaternion.identity);
+            GameObject desk = Instantiate(shuffledDesks[i], Vector3.zero + deskParent.position, Quaternion.identity, deskParent);
 
             float nextXPosition = 0;
             for (int count = 0; count < i ; count++)
@@ -43,7 +45,7 @@ public class Desk_Random : MonoBehaviour
 
             if (i > 0)
             {
-                desk.transform.position = new Vector2(nextXPosition + desk.GetComponent<SpriteRenderer>().bounds.size.x / 2, 0);
+                desk.transform.position = new Vector3(nextXPosition + desk.GetComponent<SpriteRenderer>().bounds.size.x / 2, 0, 0) + deskParent.position;
             }
         }
     }

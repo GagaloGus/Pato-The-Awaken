@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     uint coins, ducks, level = 1;
     public bool gameStarted;
+    public float speedLevel;
     void Awake()
     {
         if (!instance) //comprueba que instance no tenga informacion
@@ -21,13 +22,19 @@ public class GameManager : MonoBehaviour
         }
 
         gameStarted = false;
+        speedLevel = 0;
+    }
+    public void GameStarted()
+    {
+        gameStarted = true;
+        speedLevel = 15;
     }
 
     public void ChangeScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
         ducks = 0;
-        gameStarted = false;
+        gameStarted = false; speedLevel = 0;
     }
     public void NextLevel(string sceneName)
     {
