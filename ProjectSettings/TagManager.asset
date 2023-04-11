@@ -6,11 +6,13 @@ TagManager:
   tags:
   - Camera_Death
   - Alert
+  - Ground
+  - TrapEnemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 
