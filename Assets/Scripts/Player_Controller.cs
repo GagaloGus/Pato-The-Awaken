@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Player_Controller : MonoBehaviour
 {
-    public bool ableToMove, isGrounded, isJumping;
+    public bool ableToMove, isGrounded, isJumping, isGliding;
 
-    public float jumpPower = 15, jumpTimeCounter;
+    public float jumpPower = 15, jumpTimeCounter,
+        stunCounter;
+    public float xPosition;
 
     Rigidbody2D rb;
     public BoxCollider2D boxCol;
     LayerMask groundLayerMask;
+
+    enum playerState { Running, GoingUp, GoingDown, Gliding, Idle};
+    playerState controlState;
 
     GameObject maincamera;
     // Start is called before the first frame update
@@ -29,6 +34,9 @@ public class Player_Controller : MonoBehaviour
         if (ableToMove && !PauseMenu.isPaused && GameManager.instance.gameStarted)
         {
             rb.velocity = new Vector2(MaintainVelocity(), rb.velocity.y);
+            if (isGrounded) { Ground(); }
+            else { Air(); }
+
             Jump();
         }
 
@@ -41,7 +49,7 @@ public class Player_Controller : MonoBehaviour
     {
         float newVel;
 
-        newVel = -transform.position.x / 2;
+        newVel = -transform.position.x / 2 + xPosition;
 
         return newVel;
     }
@@ -56,6 +64,13 @@ public class Player_Controller : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position + new Vector3(boxCol.offset.x, boxCol.offset.y - 0.25f, 0), boxCol.size / 1.25f);
+    }
+    void Ground()
+    {
+        rb.gravityScale = 7; rb.drag = 0;
+        isGliding = false;
+        controlState = playerState.Running;
+        Jump();
     }
     void Jump()
     {
@@ -82,7 +97,19 @@ public class Player_Controller : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space)) { isJumping = false; }
 
     }
+    void Air()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) { isGliding = !isGliding; }
 
+        if (isGliding) { rb.gravityScale = 2; rb.drag = 3; controlState = playerState.Gliding; }
+        else 
+        { 
+            rb.gravityScale = 7; rb.drag = 0;
+            //subiendo o bajando
+            if (rb.velocity.y < -0.1) { controlState = playerState.GoingDown; }
+            else if (rb.velocity.y > 0.1) { controlState = playerState.GoingUp; }
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("coin"))
@@ -107,14 +134,26 @@ public class Player_Controller : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<Sebastian_Controller>())
+        if (collision.gameObject.CompareTag("enemy"))
         {
-            
+            EnemyStun(collision.gameObject);
         }
     }
 
-    void EnemyStun()
+    void EnemyStun(GameObject enemyGameObj)
     {
-        
+        print("ow" + enemyGameObj.name);
+        if (enemyGameObj.GetComponent<Sebastian_Controller>())
+        {
+            stunCounter = 0.5f;
+            while(stunCounter > 0)
+            {
+                stunCounter -= Time.deltaTime;
+                ableToMove = false;
+            }
+            ableToMove = true;
+        }
+
+        Destroy(enemyGameObj);
     }
 }

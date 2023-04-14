@@ -3937,7 +3937,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4592533235521715508, guid: 3c41c961c03b95a48aa3f10fa71ce1e5, type: 3}
       propertyPath: amountDesksGenerated
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4592533235521715509, guid: 3c41c961c03b95a48aa3f10fa71ce1e5, type: 3}
       propertyPath: m_RootOrder
