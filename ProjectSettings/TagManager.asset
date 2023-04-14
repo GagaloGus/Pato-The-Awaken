@@ -9,6 +9,8 @@ TagManager:
   - duck
   - End level
   - startMenuClick
+  - enemyBonkBox
+  - enemy
   layers:
   - Default
   - TransparentFX

@@ -32,11 +32,9 @@ public class Player_Controller : MonoBehaviour
             Jump();
         }
 
-        //maincamera.transform.position = new Vector3(maincamera.transform.position.x, transform.position.y + 2.5f, -10);
-
         if(transform.position.y < -2)
         {
-            GameManager.instance.ChangeScene("Test_Gabo");
+            GameManager.instance.ChangeScene("main", false);
         }
     }
     float MaintainVelocity()
@@ -99,7 +97,24 @@ public class Player_Controller : MonoBehaviour
         }
         if (collision.CompareTag("End level"))
         {
-            GameManager.instance.NextLevel("Test_Gabo");
+            GameManager.instance.ChangeScene("main", true);
         }
+        if (collision.CompareTag("enemyBonkBox"))
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+            Destroy(collision.transform.parent.gameObject);
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<Sebastian_Controller>())
+        {
+            
+        }
+    }
+
+    void EnemyStun()
+    {
+        
     }
 }

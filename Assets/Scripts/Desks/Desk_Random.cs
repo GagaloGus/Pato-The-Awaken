@@ -49,5 +49,8 @@ public class Desk_Random : MonoBehaviour
             }
         }
     }
-
+    private void Update()
+    {
+        GetComponent<Rigidbody2D>().velocity = new Vector2(-GameManager.instance.speedLevel, 0);
+    }
 }

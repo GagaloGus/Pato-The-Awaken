@@ -30,35 +30,27 @@ public class GameManager : MonoBehaviour
         speedLevel = 15;
     }
 
-    public void ChangeScene(string sceneName)
+    public void ChangeScene(string sceneName, bool nextlevel)
     {
         SceneManager.LoadScene(sceneName);
         ducks = 0;
         gameStarted = false; speedLevel = 0;
-    }
-    public void NextLevel(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-        ducks = 0; level++;
-        gameStarted = false;
+        if (nextlevel) { level++; }
     }
 
     public uint gm_coins
     {
         get { return coins; }
-        //suma los valores directamente al score
         set { coins = value; }
     }
     public uint gm_ducks
     {
         get { return ducks; }
-        //suma los valores directamente al score
         set { ducks = value; }
     }
     public uint gm_level
     {
         get { return level; }
-        //suma los valores directamente al score
         set { level = value; }
     }
 }
