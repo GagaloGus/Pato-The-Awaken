@@ -14,18 +14,22 @@ public class Player_Controller : MonoBehaviour
     public BoxCollider2D boxCol;
     LayerMask groundLayerMask;
 
-    
+    enum PlayerStates { idle, run, up, down, glide}
+    PlayerStates controlStates;
+
+    Animator animator;
 
     GameObject maincamera;
-    // Start is called before the first frame update
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); boxCol = GetComponent<BoxCollider2D>();
         groundLayerMask = LayerMask.GetMask("Ground");
         maincamera = GameObject.FindGameObjectWithTag("MainCamera");
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
         BoxCasting();
@@ -35,14 +39,19 @@ public class Player_Controller : MonoBehaviour
             rb.velocity = new Vector2(MaintainVelocity(), rb.velocity.y);
             if (isGrounded) { Ground(); }
             else { Air(); }
-
-            Jump();
         }
+
+        if (!GameManager.instance.gameStarted) // Cuando el juego está en el inicio El pato está con la animación Idle
+        {
+            controlStates = PlayerStates.idle;
+        } 
 
         if(transform.position.y < -2)
         {
             GameManager.instance.ChangeScene("main", false);
         }
+
+        animator.SetInteger("Control", (int)controlStates); // Cambia el parámetro del animator según el enumerado
     }
     float MaintainVelocity()
     {
@@ -69,6 +78,7 @@ public class Player_Controller : MonoBehaviour
         rb.gravityScale = 7; rb.drag = 0;
         isGliding = false;
         Jump();
+        controlStates = PlayerStates.run; //El pato hace la animación de correr cuando toca el suelo
     }
     void Jump()
     {
@@ -99,11 +109,23 @@ public class Player_Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space)) { isGliding = !isGliding; }
 
-        if (isGliding) { rb.gravityScale = 2; rb.drag = 3;
+        if (isGliding) 
+        { 
+            rb.gravityScale = 2; rb.drag = 3;
+            controlStates = PlayerStates.glide; // El pato hace la animación de Planeo
         }
         else 
         { 
             rb.gravityScale = 7; rb.drag = 0;
+
+            if(rb.velocity.y > 0.1)
+            {
+                controlStates = PlayerStates.up; // El pato hace la animación Up
+            }
+            else if(rb.velocity.y < -0.1)
+            {
+                controlStates = PlayerStates.down; // El pato hacia la animación Down
+            }
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
