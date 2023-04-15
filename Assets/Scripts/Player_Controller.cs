@@ -14,8 +14,7 @@ public class Player_Controller : MonoBehaviour
     public BoxCollider2D boxCol;
     LayerMask groundLayerMask;
 
-    enum playerState { Running, GoingUp, GoingDown, Gliding, Idle};
-    playerState controlState;
+    
 
     GameObject maincamera;
     // Start is called before the first frame update
@@ -69,7 +68,6 @@ public class Player_Controller : MonoBehaviour
     {
         rb.gravityScale = 7; rb.drag = 0;
         isGliding = false;
-        controlState = playerState.Running;
         Jump();
     }
     void Jump()
@@ -101,13 +99,11 @@ public class Player_Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space)) { isGliding = !isGliding; }
 
-        if (isGliding) { rb.gravityScale = 2; rb.drag = 3; controlState = playerState.Gliding; }
+        if (isGliding) { rb.gravityScale = 2; rb.drag = 3;
+        }
         else 
         { 
             rb.gravityScale = 7; rb.drag = 0;
-            //subiendo o bajando
-            if (rb.velocity.y < -0.1) { controlState = playerState.GoingDown; }
-            else if (rb.velocity.y > 0.1) { controlState = playerState.GoingUp; }
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
