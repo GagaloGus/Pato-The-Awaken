@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sebastian_Controller : MonoBehaviour
+public class Sebastian_Controller : Enemy
 {
     int xMoveDirection;
     float sizeXRatio;

@@ -39,6 +39,6 @@ public class PauseMenu : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1;
-        GameManager.instance.ChangeScene("Test_Gabo", false);
+        GameManager.instance.ChangeScene("Main", false);
     }
 }

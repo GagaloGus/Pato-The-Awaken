@@ -6,8 +6,7 @@ public class Player_Controller : MonoBehaviour
 {
     public bool ableToMove, isGrounded, isJumping, isGliding;
 
-    public float jumpPower = 15, jumpTimeCounter,
-        stunCounter;
+    public float jumpPower = 15, jumpTimeCounter;
     public float xPosition;
 
     Rigidbody2D rb;
@@ -18,14 +17,11 @@ public class Player_Controller : MonoBehaviour
     PlayerStates controlStates;
 
     Animator animator;
-
-    GameObject maincamera;
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); boxCol = GetComponent<BoxCollider2D>();
         groundLayerMask = LayerMask.GetMask("Ground");
-        maincamera = GameObject.FindGameObjectWithTag("MainCamera");
         animator = GetComponent<Animator>();
     }
 
@@ -39,6 +35,8 @@ public class Player_Controller : MonoBehaviour
             rb.velocity = new Vector2(MaintainVelocity(), rb.velocity.y);
             if (isGrounded) { Ground(); }
             else { Air(); }
+            Jump();
+            animator.SetInteger("Control", (int)controlStates);
         }
 
         if (!GameManager.instance.gameStarted) // Cuando el juego está en el inicio El pato está con la animación Idle
@@ -51,7 +49,7 @@ public class Player_Controller : MonoBehaviour
             GameManager.instance.ChangeScene("main", false);
         }
 
-        animator.SetInteger("Control", (int)controlStates); // Cambia el parámetro del animator según el enumerado
+         // Cambia el parámetro del animator según el enumerado
     }
     float MaintainVelocity()
     {
@@ -77,7 +75,6 @@ public class Player_Controller : MonoBehaviour
     {
         rb.gravityScale = 7; rb.drag = 0;
         isGliding = false;
-        Jump();
         controlStates = PlayerStates.run; //El pato hace la animación de correr cuando toca el suelo
     }
     void Jump()
@@ -154,24 +151,21 @@ public class Player_Controller : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("enemy"))
         {
-            EnemyStun(collision.gameObject);
+            StopAllCoroutines();
+            StartCoroutine(EnemyStun(collision.gameObject));
+            Destroy(collision.gameObject);
         }
     }
 
-    void EnemyStun(GameObject enemyGameObj)
+    IEnumerator EnemyStun(GameObject enemyGameObj)
     {
-        print("ow" + enemyGameObj.name);
-        if (enemyGameObj.GetComponent<Sebastian_Controller>())
         {
-            stunCounter = 0.5f;
-            while(stunCounter > 0)
-            {
-                stunCounter -= Time.deltaTime;
-                ableToMove = false;
-            }
+            ableToMove = false; animator.SetInteger("Control", 3);
+            rb.velocity = Vector2.left*4;
+            rb.gravityScale = 0;
+            yield return new WaitForSeconds(enemyGameObj.GetComponent<Enemy>().stunTime);
             ableToMove = true;
         }
-
-        Destroy(enemyGameObj);
+        
     }
 }

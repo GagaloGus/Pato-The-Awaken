@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4592533235521715509}
   - component: {fileID: 4592533235521715508}
-  - component: {fileID: 4592533235521715466}
   m_Layer: 0
   m_Name: DeskRandomizer
   m_TagString: Untagged
@@ -56,24 +55,3 @@ MonoBehaviour:
   mesaFinal: {fileID: 6639945518697313732, guid: 52b7cba0205d78c4d92eba3d34425c5c, type: 3}
   amountDesksGenerated: 100
   deskParent: {fileID: 4592533235521715509}
---- !u!50 &4592533235521715466
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4592533235521715511}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 6

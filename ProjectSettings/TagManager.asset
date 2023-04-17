@@ -11,6 +11,7 @@ TagManager:
   - startMenuClick
   - enemyBonkBox
   - enemy
+  - spider collider
   layers:
   - Default
   - TransparentFX
@@ -47,6 +48,18 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Fondo
+    uniqueID: 3301467425
+    locked: 0
+  - name: Escenario Back
+    uniqueID: 4034733645
+    locked: 0
+  - name: Player
+    uniqueID: 4269008693
+    locked: 0
+  - name: Escenario Front
+    uniqueID: 3133308367
     locked: 0
   - name: Canvas
     uniqueID: 4173534319

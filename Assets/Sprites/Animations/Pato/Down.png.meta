@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bcb61498fa1e29745958933b436f6b6e
+guid: ed73990b1bccd7f4d844df36ada297f3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,7 +69,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -128,43 +128,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Up_0
+      name: Down_0
       rect:
         serializedVersion: 2
-        x: 147
-        y: 126
-        width: 645
-        height: 596
+        x: 207
+        y: 102
+        width: 609
+        height: 574
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b75d83587b4e35c41814a9e678fe51b8
-      internalID: -314788654
+      spriteID: dd4fd0af6817e194aaccb4cb885836ea
+      internalID: 2069329741
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Up_1
+      name: Down_1
       rect:
         serializedVersion: 2
-        x: 938
-        y: 118
-        width: 643
-        height: 596
+        x: 896
+        y: 90
+        width: 609
+        height: 586
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d83962dae8e1fd4fa3bda14aa05349c
-      internalID: 605748879
+      spriteID: 0170c3216e440a34394bb4cd84cc0fd1
+      internalID: 261368705
       vertices: []
       indices: 
       edges: []
@@ -180,8 +180,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Up_0: -314788654
-      Up_1: 605748879
+      Down_1: 261368705
+      Down_0: 2069329741
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public void GameStarted()
     {
         gameStarted = true;
-        speedLevel = 15;
+        speedLevel = 13;
     }
 
     public void ChangeScene(string sceneName, bool nextlevel)
