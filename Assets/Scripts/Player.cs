@@ -5,7 +5,6 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float velocity = 20;
-    public LayerMask Ground;
     public float rayDistance = 1.5f;
     private Rigidbody2D rb;
     private Animator animator;
@@ -90,25 +89,25 @@ public class Player : MonoBehaviour
             Dead = true;
             Trap = true;
         }
-        if (collision.gameObject.tag == "Alert")
-        {
-            collision.GetComponent<Animator>().Play("Alert_Animation");
-        }
-        if (collision.gameObject.tag == "Camera_Death")
-        {
-            FindObjectOfType<Camera>().CanMove = false;
-            Dead = true;
-            rb.velocity = Vector2.zero;
-            //collision.GetComponent<Animator>().Play("Death_Animation");
-        }
+        //if (collision.gameObject.tag == "Alert")
+        //{
+        //    collision.GetComponent<Animator>().Play("Alert_Animation");
+        //}
+        //if (collision.gameObject.tag == "Camera_Death")
+        //{
+        //    FindObjectOfType<Camera>().CanMove = false;
+        //    Dead = true;
+        //    rb.velocity = Vector2.zero;
+        //    //collision.GetComponent<Animator>().Play("Death_Animation");
+        //}
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Alert")
-        {
-            collision.GetComponent<Animator>().Play("Alert_Iddle_Animation");
-        }
+        //if (collision.gameObject.tag == "Alert")
+        //{
+        //    collision.GetComponent<Animator>().Play("Alert_Iddle_Animation");
+        //}
     }
 
 }

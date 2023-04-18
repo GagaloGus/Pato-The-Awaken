@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     uint coins, ducks, level = 1;
     public bool gameStarted;
-    public float speedLevel;
+    float speedLevel;
     void Awake()
     {
         if (!instance) //comprueba que instance no tenga informacion
@@ -30,6 +30,13 @@ public class GameManager : MonoBehaviour
         speedLevel = 13;
     }
 
+    public void DiedCamera()
+    {
+        speedLevel = 0;
+        Camera.main.GetComponent<Animator>().Play("Camera_Death");
+        gameStarted = false;
+    }
+
     public void ChangeScene(string sceneName, bool nextlevel)
     {
         SceneManager.LoadScene(sceneName);
@@ -38,6 +45,13 @@ public class GameManager : MonoBehaviour
         if (nextlevel) { level++; }
     }
 
+    IEnumerator FadeOut()
+    {
+        for(float i = 0; i <= 1; i += 0.01f)
+        {
+            
+        }
+    }
     public uint gm_coins
     {
         get { return coins; }
@@ -52,5 +66,11 @@ public class GameManager : MonoBehaviour
     {
         get { return level; }
         set { level = value; }
+    }
+
+    public float gm_gamespeed
+    {
+        get { return speedLevel; }
+        set { speedLevel = value; }
     }
 }

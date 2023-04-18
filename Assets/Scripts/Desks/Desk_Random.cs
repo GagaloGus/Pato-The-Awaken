@@ -52,6 +52,6 @@ public class Desk_Random : MonoBehaviour
     private void Update()
     {
         //GetComponent<Rigidbody2D>().velocity = new Vector2(-GameManager.instance.speedLevel, 0);
-        transform.Translate(Vector3.left * GameManager.instance.speedLevel * Time.deltaTime);
+        transform.Translate(Vector3.left * GameManager.instance.gm_gamespeed * Time.deltaTime);
     }
 }

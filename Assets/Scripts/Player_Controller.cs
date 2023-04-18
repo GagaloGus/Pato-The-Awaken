@@ -17,7 +17,6 @@ public class Player_Controller : MonoBehaviour
     PlayerStates controlStates;
 
     Animator animator;
-    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); boxCol = GetComponent<BoxCollider2D>();
@@ -49,7 +48,18 @@ public class Player_Controller : MonoBehaviour
             GameManager.instance.ChangeScene("main", false);
         }
 
-         // Cambia el parámetro del animator según el enumerado
+        DeathCamera();
+    }
+
+    void DeathCamera()
+    {
+        if (transform.position.x < -9)
+        {
+            GameManager.instance.DiedCamera();
+            ableToMove = false;
+            rb.gravityScale = 0; rb.velocity = Vector2.zero;
+            animator.SetInteger("Control", 1);
+        }
     }
     float MaintainVelocity()
     {
@@ -145,10 +155,12 @@ public class Player_Controller : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             Destroy(collision.transform.parent.gameObject);
+            isGliding = false;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        print(collision.gameObject.tag);
         if (collision.gameObject.CompareTag("enemy"))
         {
             StopAllCoroutines();
@@ -160,7 +172,8 @@ public class Player_Controller : MonoBehaviour
     IEnumerator EnemyStun(GameObject enemyGameObj)
     {
         {
-            ableToMove = false; animator.SetInteger("Control", 3);
+            ableToMove = false; isGliding = false;
+            animator.SetInteger("Control", 3);
             rb.velocity = Vector2.left*4;
             rb.gravityScale = 0;
             yield return new WaitForSeconds(enemyGameObj.GetComponent<Enemy>().stunTime);

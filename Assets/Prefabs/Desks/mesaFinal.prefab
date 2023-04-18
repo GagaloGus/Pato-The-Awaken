@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6639945518697313754}
   - component: {fileID: 6639945518697313733}
   m_Layer: 0
-  m_Name: mesafinal
-  m_TagString: End level
+  m_Name: mesaFinal
+  m_TagString: suelo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

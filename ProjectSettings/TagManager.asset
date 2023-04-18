@@ -4,9 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Camera_Death
-  - Alert
-  - Ground
   - TrapEnemy
   - suelo
   - coin
@@ -67,4 +64,7 @@ TagManager:
     locked: 0
   - name: Canvas
     uniqueID: 4173534319
+    locked: 0
+  - name: Front Canvas
+    uniqueID: 3742030351
     locked: 0
