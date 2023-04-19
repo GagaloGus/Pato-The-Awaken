@@ -18,11 +18,11 @@ public class AlertPosition : MonoBehaviour
     {
         if(player.transform.position.x < -3 && GameManager.instance.gameStarted)
         {
-            animator.Play("Alert_Animation");
+            animator.SetBool("IsClose", true);
         }
         else
         {
-            animator.Play("Alert_Iddle_Animation");
+            animator.SetBool("IsClose", false);
         }
     }
 }

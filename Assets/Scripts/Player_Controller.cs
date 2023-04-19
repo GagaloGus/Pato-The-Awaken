@@ -161,7 +161,6 @@ public class Player_Controller : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        print(collision.gameObject.tag);
         if (collision.gameObject.CompareTag("enemy"))
         {
             StopAllCoroutines();
@@ -182,4 +181,9 @@ public class Player_Controller : MonoBehaviour
         }
         
     }
+
+    //public void StartMenuAnim()
+    //{
+    //    FindObjectOfType<StartMenu>().gameObject.GetComponent<Animator>().Play("StartSplash");
+    //}
 }
