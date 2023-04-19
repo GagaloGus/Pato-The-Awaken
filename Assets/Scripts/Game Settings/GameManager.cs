@@ -45,13 +45,6 @@ public class GameManager : MonoBehaviour
         if (nextlevel) { level++; }
     }
 
-    IEnumerator FadeOut()
-    {
-        for(float i = 0; i <= 1; i += 0.01f)
-        {
-            
-        }
-    }
     public uint gm_coins
     {
         get { return coins; }
@@ -72,5 +65,10 @@ public class GameManager : MonoBehaviour
     {
         get { return speedLevel; }
         set { speedLevel = value; }
+    }
+
+    public float MapValues(float value, float leftMin, float leftMax, float rightMin, float rightMax)
+    {
+        return rightMin + (value - leftMin) * (rightMax - rightMin) / (leftMax - leftMin);
     }
 }

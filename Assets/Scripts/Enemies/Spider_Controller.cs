@@ -10,6 +10,8 @@ public class Spider_Controller : Enemy
     // Start is called before the first frame update
     void Start()
     {
+        SpawnRandom(0.6f);
+
         EndPos = Random.Range(transform.position.y-4, RayCasting() + 9);
         //transform.position = new Vector2(transform.position.x, EndPos);
         /*if(Physics2D.Raycast(transform.position, FindObjectOfType<Player_Controller>().gameObject.transform.position - transform.position).distance < 1)

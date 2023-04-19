@@ -48,18 +48,19 @@ public class Player_Controller : MonoBehaviour
             GameManager.instance.ChangeScene("main", false);
         }
 
-        DeathCamera();
+        if (transform.position.x < -9)
+        {
+            DeathCamera();
+        }
     }
 
     void DeathCamera()
     {
-        if (transform.position.x < -9)
-        {
-            GameManager.instance.DiedCamera();
-            ableToMove = false;
-            rb.gravityScale = 0; rb.velocity = Vector2.zero;
-            animator.SetInteger("Control", 1);
-        }
+        GameManager.instance.DiedCamera();
+        ableToMove = false;
+        rb.gravityScale = 0; rb.velocity = Vector2.zero;
+        animator.SetInteger("Control", 1);
+        animator.Play("DeathNokas");
     }
     float MaintainVelocity()
     {

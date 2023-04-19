@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Desk_Random : MonoBehaviour
 {
     public GameObject[] allDesks, shuffledDesks;
     public GameObject mesaInicio, mesaFinal;
     public int amountDesksGenerated;
+    float EndPos, StartPos;
 
     public Transform deskParent;
+    public Slider LevelSlider;
     // Start is called before the first frame update
     void Start()
     {
+        StartPos = transform.position.x;
         //hace que el tamaño del array de Shuffle se cambie al que queremos automaticamente
         GameObject[] resizeArray = new GameObject[amountDesksGenerated + 2];
         shuffledDesks.CopyTo(resizeArray, 0); shuffledDesks = resizeArray;
@@ -46,12 +50,13 @@ public class Desk_Random : MonoBehaviour
             if (i > 0)
             {
                 desk.transform.position = new Vector3(nextXPosition + desk.GetComponent<SpriteRenderer>().bounds.size.x / 2, 0, 0) + deskParent.position;
+                EndPos = nextXPosition;
             }
         }
     }
     private void Update()
     {
-        //GetComponent<Rigidbody2D>().velocity = new Vector2(-GameManager.instance.speedLevel, 0);
         transform.Translate(Vector3.left * GameManager.instance.gm_gamespeed * Time.deltaTime);
+        LevelSlider.value = GameManager.instance.MapValues(transform.position.x, StartPos, -EndPos - 2, 0, 1);
     }
 }

@@ -126,7 +126,7 @@ MonoBehaviour:
   isGliding: 0
   jumpPower: 15
   jumpTimeCounter: 0.4
-  xPosition: 0
+  xPosition: 0.5
   boxCol: {fileID: 3119241240135843395}
 --- !u!50 &3119241240135843420
 Rigidbody2D:

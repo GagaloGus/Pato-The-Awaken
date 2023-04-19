@@ -22,6 +22,8 @@ public class Sebastian_Controller : Enemy
     // Start is called before the first frame update
     void Start()
     {
+        SpawnRandom(0.8f);
+
         //randomiza la direccion al que va
         do { xMoveDirection = Random.Range(-1, 2); } while (xMoveDirection == 0);
 
