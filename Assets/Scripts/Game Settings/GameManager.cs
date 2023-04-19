@@ -38,6 +38,14 @@ public class GameManager : MonoBehaviour
         if (nextlevel) { level++; }
     }
 
+    public void AddCoin(int value)
+    {
+        coins += (uint)value;
+    }
+    public uint GetScore()
+    {
+        return coins;
+    }
     public uint gm_coins
     {
         get { return coins; }
