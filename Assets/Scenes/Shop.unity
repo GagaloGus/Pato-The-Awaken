@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 35826050}
   - component: {fileID: 35826049}
   m_Layer: 5
-  m_Name: Button (4)
+  m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -421,7 +421,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3932339dae1bcef44958a7bdab8eec2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: 0
+  Buttons:
+  - {fileID: 2021688199}
+  - {fileID: 519167969}
+  - {fileID: 1072021092}
+  - {fileID: 275842566}
+  - {fileID: 35826047}
+  - {fileID: 2109022693}
 --- !u!4 &117471610
 Transform:
   m_ObjectHideFlags: 0
@@ -450,7 +456,7 @@ GameObject:
   - component: {fileID: 275842569}
   - component: {fileID: 275842568}
   m_Layer: 5
-  m_Name: Button (3)
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -584,7 +590,7 @@ GameObject:
   - component: {fileID: 519167972}
   - component: {fileID: 519167971}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -899,7 +905,7 @@ GameObject:
   - component: {fileID: 1072021095}
   - component: {fileID: 1072021094}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1641,7 +1647,7 @@ GameObject:
   - component: {fileID: 1652761504}
   - component: {fileID: 1652761503}
   m_Layer: 5
-  m_Name: Button (6)
+  m_Name: GetCoins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2103,8 +2109,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinText: {fileID: 1441329160}
-  duckText: {fileID: 0}
-  levelText: {fileID: 0}
 --- !u!1 &2021688199
 GameObject:
   m_ObjectHideFlags: 0
@@ -2118,7 +2122,7 @@ GameObject:
   - component: {fileID: 2021688202}
   - component: {fileID: 2021688201}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Mamahuevaso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2189,6 +2193,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 117471609}
+        m_TargetAssemblyTypeName: Tienda, Assembly-CSharp
+        m_MethodName: GetButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 117471609}
         m_TargetAssemblyTypeName: Tienda, Assembly-CSharp
         m_MethodName: Comprar
@@ -2387,7 +2403,7 @@ GameObject:
   - component: {fileID: 2109022696}
   - component: {fileID: 2109022695}
   m_Layer: 5
-  m_Name: Button (5)
+  m_Name: 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
