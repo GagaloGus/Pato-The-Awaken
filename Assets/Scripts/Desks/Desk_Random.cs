@@ -38,7 +38,7 @@ public class Desk_Random : MonoBehaviour
         //instancia las mesas generadas para que esten en fila
         for(int i = 0; i < shuffledDesks.Length; i++)
         {
-            GameObject desk = Instantiate(shuffledDesks[i], Vector3.zero + deskParent.position, Quaternion.identity, deskParent);
+            GameObject desk = Instantiate(shuffledDesks[i], Vector3.up*5 + deskParent.position, Quaternion.identity, deskParent);
 
             float nextXPosition = 0;
             for (int count = 0; count < i ; count++)
@@ -49,7 +49,7 @@ public class Desk_Random : MonoBehaviour
 
             if (i > 0)
             {
-                desk.transform.position = new Vector3(nextXPosition + desk.GetComponent<SpriteRenderer>().bounds.size.x / 2, 0, 0) + deskParent.position;
+                desk.transform.position = new Vector3(nextXPosition + desk.GetComponent<SpriteRenderer>().bounds.size.x / 2, 5, 0) + deskParent.position;
                 EndPos = nextXPosition;
             }
         }
