@@ -16,6 +16,7 @@ public class Player_Controller : MonoBehaviour
     enum PlayerStates { idle, run, up, down, glide}
     PlayerStates controlStates;
 
+
     Animator animator;
     void Start()
     {
@@ -182,8 +183,14 @@ public class Player_Controller : MonoBehaviour
         
     }
 
-    //public void StartMenuAnim()
-    //{
-    //    FindObjectOfType<StartMenu>().gameObject.GetComponent<Animator>().Play("StartSplash");
-    //}
+    public IEnumerator UseBuff(InventoryObject inv)
+    {
+        print("what the hell ");
+        yield return null;
+    }
+
+    public void StartBuffCoroutine(InventoryObject inv)
+    {
+        print("sexo " + inv.itemName);
+    }
 }

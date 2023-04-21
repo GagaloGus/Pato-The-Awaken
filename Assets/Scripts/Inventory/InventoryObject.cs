@@ -5,7 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewItem", menuName = "Inventory/Create new item")]
 public class InventoryObject : ScriptableObject
 {
-    public string itemName, description;
+    public string itemName, itemDescription;
     public Sprite itemSprite;
-    public float activeTime;
+    public float itemActiveTime;
+
+    public void Use()
+    {
+        FindObjectOfType<Player_Controller>().StartBuffCoroutine(this);
+    }
 }

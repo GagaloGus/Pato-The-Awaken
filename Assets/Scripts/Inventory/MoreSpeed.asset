@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4cff1469da10a24db888bc369479e8d, type: 3}
   m_Name: MoreSpeed
   m_EditorClassIdentifier: 
-  itemName: 
-  description: 
-  itemSprite: {fileID: 0}
-  activeTime: 0
+  itemName: Increased Speed
+  itemDescription: Increases the base speed of the player
+  itemSprite: {fileID: 735329313, guid: 0e56d77e5b575104aab18e8f7df3e441, type: 3}
+  itemActiveTime: 20

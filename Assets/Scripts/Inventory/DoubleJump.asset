@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4cff1469da10a24db888bc369479e8d, type: 3}
   m_Name: DoubleJump
   m_EditorClassIdentifier: 
-  itemName: 
-  description: 
-  itemSprite: {fileID: 0}
-  activeTime: 0
+  itemName: Double Jump
+  itemDescription: Allows the player to double jump
+  itemSprite: {fileID: -1483533980, guid: 0e56d77e5b575104aab18e8f7df3e441, type: 3}
+  itemActiveTime: 15
