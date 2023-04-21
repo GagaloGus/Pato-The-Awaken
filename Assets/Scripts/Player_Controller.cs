@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Player_Controller : MonoBehaviour
 {
-    public bool ableToMove, isGrounded, isJumping, isGliding;
+    bool ableToMove = true, isGrounded, isJumping, isGliding;
 
-    public float jumpPower = 15, jumpTimeCounter;
+    float jumpPower = 15, jumpTimeCounter;
     public float xPosition;
 
     Rigidbody2D rb;
@@ -16,6 +16,8 @@ public class Player_Controller : MonoBehaviour
     enum PlayerStates { idle, run, up, down, glide}
     PlayerStates controlStates;
 
+    enum ActiveBuff { idle, doubleJump, fast, invincible}
+    ActiveBuff currentBuff;
 
     Animator animator;
     void Start()
@@ -185,12 +187,36 @@ public class Player_Controller : MonoBehaviour
 
     public IEnumerator UseBuff(InventoryObject inv)
     {
-        print("what the hell ");
-        yield return null;
+        currentBuff = ActiveBuff.idle;
+
+        if(inv != null)
+        {
+            if (inv.itemName == "DoubJumpBuff")
+            {
+                currentBuff = ActiveBuff.doubleJump;
+            }
+            else if (inv.itemName == "FasterBuff")
+            {
+                currentBuff = ActiveBuff.fast;
+            }
+            else if (inv.itemName == "InvinciBuff")
+            {
+                currentBuff = ActiveBuff.invincible;
+            }
+
+            yield return new WaitForSeconds(inv.itemActiveTime);
+            currentBuff = ActiveBuff.idle;
+        }
+        else
+        {
+            //Si se quiere usar un buff que no existe se reinicia la escena
+            GameManager.instance.ChangeScene("main", false);
+        }
     }
 
     public void StartBuffCoroutine(InventoryObject inv)
     {
-        print("sexo " + inv.itemName);
+        //StartCoroutine(UseBuff(inv));
+        print(inv.name);
     }
 }

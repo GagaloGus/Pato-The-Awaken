@@ -452,7 +452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.44716978, b: 0.8548466, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.7647059}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -493,7 +493,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f1f9cc3fa1a66754681798efdfdfedff, type: 2}
   - {fileID: 11400000, guid: df0606c836850f047ae06d2a6ead63cb, type: 2}
   - {fileID: 11400000, guid: cbe41a97eaa34c042b2dcc4de1b82450, type: 2}
-  itemAmount: 000000000000000000000000
   itemContent: {fileID: 1140584065}
   itemButton: {fileID: 8025861611743069488, guid: ee4bb4c3d1d21cb47858f1bae78916ab, type: 3}
   itemSelectFrame: {fileID: 1330283101}
@@ -2005,7 +2004,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.000080609105, y: 0}
-  m_SizeDelta: {x: -385.15, y: 551.26}
+  m_SizeDelta: {x: -0.00012207, y: 551.26}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1140584066
 MonoBehaviour:
@@ -2028,7 +2027,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 409.4, y: 434.9}
-  m_Spacing: {x: 38.4, y: 0}
+  m_Spacing: {x: 61.7, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &1151624933
@@ -4315,7 +4314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
+  m_sendNavigationEvents: 0
   m_DragThreshold: 10
 --- !u!4 &1996331290
 Transform:
@@ -4539,6 +4538,22 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -25958603
       objectReference: {fileID: 0}
+    - target: {fileID: 3119241240135843394, guid: c6e7c223aa54f4a44a0b3e7259bf9caa, type: 3}
+      propertyPath: buffItems.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3119241240135843394, guid: c6e7c223aa54f4a44a0b3e7259bf9caa, type: 3}
+      propertyPath: buffItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: f1f9cc3fa1a66754681798efdfdfedff, type: 2}
+    - target: {fileID: 3119241240135843394, guid: c6e7c223aa54f4a44a0b3e7259bf9caa, type: 3}
+      propertyPath: buffItems.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: cbe41a97eaa34c042b2dcc4de1b82450, type: 2}
+    - target: {fileID: 3119241240135843394, guid: c6e7c223aa54f4a44a0b3e7259bf9caa, type: 3}
+      propertyPath: buffItems.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: df0606c836850f047ae06d2a6ead63cb, type: 2}
     - target: {fileID: 3119241240135843395, guid: c6e7c223aa54f4a44a0b3e7259bf9caa, type: 3}
       propertyPath: m_Size.x
       value: 1.8847268

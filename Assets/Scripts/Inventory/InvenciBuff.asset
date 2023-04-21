@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4cff1469da10a24db888bc369479e8d, type: 3}
-  m_Name: Invencibility
+  m_Name: InvenciBuff
   m_EditorClassIdentifier: 
   itemName: Invencibility
   itemDescription: Makes the player inmune to enemy stuns
