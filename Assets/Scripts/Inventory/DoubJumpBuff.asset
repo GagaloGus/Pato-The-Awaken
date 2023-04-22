@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: Double Jump
   itemDescription: Allows the player to double jump
   itemSprite: {fileID: -1483533980, guid: 0e56d77e5b575104aab18e8f7df3e441, type: 3}
-  itemActiveTime: 15
+  itemActiveTime: 10

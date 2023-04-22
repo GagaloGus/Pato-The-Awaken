@@ -23,7 +23,7 @@ public class Inventory : MonoBehaviour
             obj.transform.Find("ItemName").GetComponent<TMP_Text>().text = items[i].itemName;
             itemDesc.text = items[i].itemDescription + " (" + items[i].itemActiveTime + "s)";
             itemSprt.sprite = items[i].itemSprite;
-            itemAmnt.text = Random.Range(0,2).ToString();
+            itemAmnt.text = Random.Range(1,3).ToString();
 
             if(int.Parse(itemAmnt.text) == 0)
             {
