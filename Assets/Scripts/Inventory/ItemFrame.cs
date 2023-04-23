@@ -15,6 +15,14 @@ public class ItemFrame : MonoBehaviour
         cooldownText.SetActive(false);
     }
 
+    private void Update()
+    {
+        if (!GameManager.instance.gameStarted && Input.GetKeyDown(KeyCode.I))
+        {
+            Inventory.SetActive(!Inventory.activeInHierarchy);
+        }
+    }
+
     public void CheckIfGameStarted()
     {
         if (!GameManager.instance.gameStarted)

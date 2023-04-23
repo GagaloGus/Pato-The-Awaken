@@ -48,7 +48,7 @@ public class Player_Controller : MonoBehaviour
 
         if(transform.position.y < -2)
         {
-            GameManager.instance.ChangeScene("main", false);
+            DeathCamera();
         }
 
         if (transform.position.x < -9)
@@ -161,7 +161,13 @@ public class Player_Controller : MonoBehaviour
         }
         if (collision.CompareTag("End level"))
         {
-            GameManager.instance.ChangeScene("main", true);
+            StopCoroutine(nameof(EnemyStun));
+            rb.velocity = new Vector2(8, 3); rb.gravityScale = 0; rb.drag = 0;
+            ableToMove = false;
+            animator.SetInteger("Control", (int)PlayerStates.glide);
+
+
+            GameManager.instance.CameraEndCutscene();
         }
         if (collision.CompareTag("enemyBonkBox"))
         {
@@ -253,6 +259,7 @@ public class Player_Controller : MonoBehaviour
             GameObject trail = new GameObject();
             SpriteRenderer sprtRend = trail.AddComponent<SpriteRenderer>();
             sprtRend.sprite = GetComponent<SpriteRenderer>().sprite;
+            sprtRend.sortingLayerName = "Player Effect";
             trail.transform.position = transform.position;
             trail.transform.parent = FindObjectOfType<Desk_Random>().gameObject.transform;
 
