@@ -50,13 +50,13 @@ public class Desk_Random : MonoBehaviour
             if (i > 0)
             {
                 desk.transform.position = new Vector3(nextXPosition + desk.GetComponent<SpriteRenderer>().bounds.size.x / 2, 5, 0) + deskParent.position;
-                EndPos = nextXPosition;
+                EndPos = nextXPosition + desk.GetComponent<SpriteRenderer>().bounds.size.x / 3;
             }
         }
     }
     private void Update()
     {
         transform.Translate(Vector3.left * GameManager.instance.gm_gamespeed * Time.deltaTime);
-        LevelSlider.value = GameManager.instance.MapValues(transform.position.x, StartPos, -EndPos - 2, 0, 1);
+        LevelSlider.value = GameManager.instance.MapValues(transform.position.x, StartPos, -EndPos, 0, 1);
     }
 }

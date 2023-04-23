@@ -30,10 +30,17 @@ public class GameManager : MonoBehaviour
         speedLevel = 13;
     }
 
+    public void CameraEndCutscene()
+    {
+        speedLevel = 0;
+        Camera.main.GetComponent<Camera_Settings>().followPlayer = false;
+        Camera.main.GetComponent<Animator>().Play("Camera_EndLevel");
+    }
+
     public void DiedCamera()
     {
         speedLevel = 0;
-        Camera.main.GetComponent<Animator>().Play("Camera_Death");
+        Camera.main.GetComponent<Animator>().Play("Camera_DeathFade");
         gameStarted = false;
     }
 

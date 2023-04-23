@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class StartMenu : MonoBehaviour
 {
-    public GameObject startMenu, startLogo;
+    GameObject startMenu, startLogo;
     bool clicked_start;
     // Update is called once per frame
     private void Start()
     {
-        startMenu.SetActive(true);
         clicked_start = false;
+        startMenu = transform.Find("Start Logo").gameObject;
         startLogo = FindObjectOfType<StartLogo>().gameObject;
     }
     public void StartLevel()

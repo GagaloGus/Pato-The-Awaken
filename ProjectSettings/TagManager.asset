@@ -56,6 +56,9 @@ TagManager:
   - name: Escenario Back
     uniqueID: 4034733645
     locked: 0
+  - name: Player Effect
+    uniqueID: 2794749355
+    locked: 0
   - name: Player
     uniqueID: 4269008693
     locked: 0

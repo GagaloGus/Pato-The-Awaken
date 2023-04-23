@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Player_Controller : MonoBehaviour
 {
-    public bool ableToMove, isGrounded, isJumping, isGliding;
+    bool ableToMove = true, isGrounded, isJumping, isGliding;
 
-    public float jumpPower = 15, jumpTimeCounter;
+    float jumpPower = 15, jumpTimeCounter;
+    public int jumpsAvaliable;
     public float xPosition;
 
     Rigidbody2D rb;
@@ -16,6 +17,9 @@ public class Player_Controller : MonoBehaviour
     enum PlayerStates { idle, run, up, down, glide}
     PlayerStates controlStates;
 
+    enum ActiveBuff { idle, doubleJump, fast, invincible}
+    ActiveBuff currentBuff;
+
     Animator animator;
     void Start()
     {
@@ -23,7 +27,6 @@ public class Player_Controller : MonoBehaviour
         groundLayerMask = LayerMask.GetMask("Ground");
         animator = GetComponent<Animator>();
     }
-
    
     void Update()
     {
@@ -45,7 +48,7 @@ public class Player_Controller : MonoBehaviour
 
         if(transform.position.y < -2)
         {
-            GameManager.instance.ChangeScene("main", false);
+            DeathCamera();
         }
 
         if (transform.position.x < -9)
@@ -65,9 +68,7 @@ public class Player_Controller : MonoBehaviour
     float MaintainVelocity()
     {
         float newVel;
-
         newVel = -transform.position.x / 2 + xPosition;
-
         return newVel;
     }
     void BoxCasting()
@@ -87,15 +88,25 @@ public class Player_Controller : MonoBehaviour
         rb.gravityScale = 7; rb.drag = 0;
         isGliding = false;
         controlStates = PlayerStates.run; //El pato hace la animación de correr cuando toca el suelo
+
+        if (currentBuff == ActiveBuff.doubleJump) { jumpsAvaliable = 1; } else { jumpsAvaliable = 0; }
     }
     void Jump()
     {
         //salta si esta en el suelo y le doy al espacio
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && (isGrounded || jumpsAvaliable > 0))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             isJumping = true;
             jumpTimeCounter = 0.21f;
+
+            if (!isGrounded && currentBuff == ActiveBuff.doubleJump)
+            {
+                StopCoroutine(nameof(DoubleJumpEffect));
+                StartCoroutine(DoubleJumpEffect());
+            }
+            jumpsAvaliable--;
+            
         }
 
         //permite que salte mas si sigo presionando espacio
@@ -115,7 +126,7 @@ public class Player_Controller : MonoBehaviour
     }
     void Air()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) { isGliding = !isGliding; }
+        if (Input.GetKeyDown(KeyCode.Space) && jumpsAvaliable == 0) { isGliding = !isGliding; }
 
         if (isGliding) 
         { 
@@ -150,7 +161,13 @@ public class Player_Controller : MonoBehaviour
         }
         if (collision.CompareTag("End level"))
         {
-            GameManager.instance.ChangeScene("main", true);
+            StopCoroutine(nameof(EnemyStun));
+            rb.velocity = new Vector2(8, 3); rb.gravityScale = 0; rb.drag = 0;
+            ableToMove = false;
+            animator.SetInteger("Control", (int)PlayerStates.glide);
+
+
+            GameManager.instance.CameraEndCutscene();
         }
         if (collision.CompareTag("enemyBonkBox"))
         {
@@ -163,27 +180,117 @@ public class Player_Controller : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("enemy"))
         {
-            StopAllCoroutines();
-            StartCoroutine(EnemyStun(collision.gameObject));
+            if(currentBuff != ActiveBuff.invincible)
+            {
+                StopCoroutine(nameof(EnemyStun));
+                StartCoroutine(EnemyStun(collision.gameObject));
+            }
             Destroy(collision.gameObject);
         }
     }
 
     IEnumerator EnemyStun(GameObject enemyGameObj)
     {
-        {
-            ableToMove = false; isGliding = false;
-            animator.SetInteger("Control", 3);
-            rb.velocity = Vector2.left*4;
-            rb.gravityScale = 0;
-            yield return new WaitForSeconds(enemyGameObj.GetComponent<Enemy>().stunTime);
-            ableToMove = true;
-        }
-        
+        ableToMove = false; isGliding = false;
+        animator.SetInteger("Control", 3);
+        rb.velocity = Vector2.left*4;
+        rb.gravityScale = 0;
+        yield return new WaitForSeconds(enemyGameObj.GetComponent<Enemy>().stunTime);
+        ableToMove = true;
     }
 
-    //public void StartMenuAnim()
-    //{
-    //    FindObjectOfType<StartMenu>().gameObject.GetComponent<Animator>().Play("StartSplash");
-    //}
+    public IEnumerator UseBuff(InventoryObject inv)
+    {
+        currentBuff = ActiveBuff.idle;
+        float speedMult = 1;
+
+        if(inv != null)
+        {
+            if (inv.name == "DoubJumpBuff")
+            {
+                currentBuff = ActiveBuff.doubleJump;
+            }
+            else if (inv.name == "FasterBuff")
+            {
+                currentBuff = ActiveBuff.fast; speedMult = 1.5f;
+                GameManager.instance.gm_gamespeed *= speedMult;
+                xPosition += speedMult;
+
+                StartCoroutine(SpeedBoostTrail(inv.itemActiveTime));
+            }
+            else if (inv.name == "InvenciBuff")
+            {
+                currentBuff = ActiveBuff.invincible;
+                StartCoroutine(InvencibilityColorChange(inv.itemActiveTime));
+            }
+
+            yield return new WaitForSeconds(inv.itemActiveTime);
+            print("back to normnal :(");
+            currentBuff = ActiveBuff.idle;
+
+            if (inv.name == "FasterBuff")
+            {
+                GameManager.instance.gm_gamespeed /= speedMult;
+                xPosition -= speedMult;
+            }
+
+        }
+        else
+        {
+            //Si se quiere usar un buff que no existe se reinicia la escena
+            GameManager.instance.ChangeScene("main", false);
+        }
+    }
+
+    IEnumerator DoubleJumpEffect()
+    {
+        GetComponent<SpriteRenderer>().color = Color.green;
+        for (float i = 0; i <= 1; i+= 0.1f)
+        {
+            GetComponent<SpriteRenderer>().color = new Color(i, 1, i);
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    IEnumerator SpeedBoostTrail(float useTime)
+    {
+        for (int repeat = 0; repeat <= useTime * 6; repeat++)
+        {
+            GameObject trail = new GameObject();
+            SpriteRenderer sprtRend = trail.AddComponent<SpriteRenderer>();
+            sprtRend.sprite = GetComponent<SpriteRenderer>().sprite;
+            sprtRend.sortingLayerName = "Player Effect";
+            trail.transform.position = transform.position;
+            trail.transform.parent = FindObjectOfType<Desk_Random>().gameObject.transform;
+
+            //for se repite 6 veces
+            for (float i = 0.5f; i >= 0; i-= 0.1f)
+            {
+                sprtRend.color = new Color(0, 0, 0, i);
+                yield return new WaitForSeconds(0.025f);
+            }
+            
+            Destroy(trail);
+        }
+    }
+
+    IEnumerator InvencibilityColorChange(float useTime)
+    {
+        for (int repeat = 0; repeat <= useTime; repeat++)
+        {
+            //for se repite 100 veces
+            for (float i = 0.01f; i < 1; i+= 0.01f)
+            {
+                GetComponent<SpriteRenderer>().color = Color.HSVToRGB(i, 0.82f, 1);
+                yield return new WaitForSeconds(0.005f);
+            }
+        }
+        GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
+    public void StartBuffCoroutine(InventoryObject inv)
+    {
+        StartCoroutine(UseBuff(inv));
+        print(inv.name);
+    }
 }
