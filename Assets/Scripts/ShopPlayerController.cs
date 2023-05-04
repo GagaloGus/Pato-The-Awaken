@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ShopPlayerController : MonoBehaviour
 {
-    public bool ableToMove;
+    public bool ableToMove, InElevator;
     SpriteRenderer rend;
     Rigidbody2D rb;
 
-    enum PlayerStats { IdleFront, WalkShop, up, down}
+    enum PlayerStats { IdleFront, WalkShop, WalkFront, WalkUpFront, Elevetor}
     PlayerStats controlStates;
     Animator animator;
     void Start()
@@ -16,6 +16,7 @@ public class ShopPlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         rend = GetComponent<SpriteRenderer>();
+        ableToMove = true;
     }
 
     void Update()
@@ -40,16 +41,35 @@ public class ShopPlayerController : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.W))
         {
-            controlStates = PlayerStats.up;
+            controlStates = PlayerStats.WalkUpFront;
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            controlStates = PlayerStats.down;
+            controlStates = PlayerStats.WalkFront;
         }
         else
         {
             controlStates = PlayerStats.IdleFront;
         }
         animator.SetInteger("ControlShop", (int)controlStates);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Shop"))
+        {
+             
+        }
+        if (collision.CompareTag("Elevator"))
+        {
+            InElevator = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Elevator"))
+        {
+            InElevator = false;
+        }
     }
 }
