@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Tienda : MonoBehaviour
 {
-    string x;
+    public int ItemSelected = 0;
     ShopObject[] shop;
     public GameObject[] Buttons;
     void Start()
@@ -22,28 +22,36 @@ public class Tienda : MonoBehaviour
         foreach(GameObject Obj in Buttons)
         {
             Obj.name = count.ToString(); count++;
-            Obj.GetComponent<Button>().onClick.AddListener(() => { Comprar(Obj); });
+            Obj.GetComponent<Button>().onClick.AddListener(() => { SelectItem(Obj); });
         }
 
+        transform.Find("Confirm").gameObject.GetComponent<Button>().onClick.AddListener(() => { Comprar(); });
     }
 
     void Update()
     {
-
+       
     }
 
-    public void Comprar(GameObject B)
+    public void Comprar()
     {
+        if(ItemSelected > -1)
+        {
+            if (GameManager.instance.gm_coins >= shop[ItemSelected].GetValue())
+            {
+                Debug.Log("Has comprado" + shop[ItemSelected].GetName() + " !");
+                GameManager.instance.AddCoin(-shop[ItemSelected].GetValue());
+            }
 
-       if (GameManager.instance.gm_coins >= shop[int.Parse(B.name)].GetValue())
-       {
-            Debug.Log("Has comprado" + shop[int.Parse(B.name)].GetName() + " !");
-            GameManager.instance.AddCoin(-shop[int.Parse(B.name)].GetValue());
-       }
+            else
+            {
+                Debug.Log("Aun no tienes el suficiente dinero!");
+            }
+        }
+    }
 
-       else
-       {
-           Debug.Log("Aun no tienes el suficiente dinero!");
-       }
+    public void SelectItem(GameObject A)
+    {
+        ItemSelected = int.Parse(A.name);
     }
 }

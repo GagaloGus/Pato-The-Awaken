@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player_Controller : MonoBehaviour
 {
-    public bool ableToMove, isGrounded, isJumping, isGliding;
+    public bool InShop, ableToMove, isGrounded, isJumping, isGliding;
 
     public float jumpPower = 15, jumpTimeCounter;
     public float xPosition;
@@ -145,6 +145,14 @@ public class Player_Controller : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             Destroy(collision.transform.parent.gameObject);
+        }
+        if (collision.CompareTag("Shop"))
+        {
+            InShop = true;
+            if(InShop == true)
+            {
+                FindObjectOfType<ShopUI>().Shop.SetActive(true);
+            }
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)

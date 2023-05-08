@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShopPlayerController : MonoBehaviour
 {
-    public bool ableToMove, InElevator;
+    public bool InShop, ableToMove, InElevator;
     SpriteRenderer rend;
     Rigidbody2D rb;
 
@@ -26,7 +26,7 @@ public class ShopPlayerController : MonoBehaviour
             rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * 4;
         }
 
-        float NewScale = GameManager.instance.MapValues(transform.position.y, 0.6f, -4, 0.8f, 1);
+        float NewScale = GameManager.instance.MapValues(transform.position.y, 0.6f, -4, 0.7f, 1);
         transform.localScale = Vector3.one * NewScale;
 
         if (Input.GetKey(KeyCode.A))
@@ -52,13 +52,19 @@ public class ShopPlayerController : MonoBehaviour
             controlStates = PlayerStats.IdleFront;
         }
         animator.SetInteger("ControlShop", (int)controlStates);
+        if (InShop == true && Input.GetKey(KeyCode.E))
+        {
+            ableToMove = false;
+            FindObjectOfType<ShopUI>().Shop.SetActive(true);
+        }
+        FindObjectOfType<ShopUI>().KeySign.SetActive(InShop);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Shop"))
         {
-             
+            InShop = true;
         }
         if (collision.CompareTag("Elevator"))
         {
@@ -67,9 +73,17 @@ public class ShopPlayerController : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.CompareTag("Shop"))
+        {
+            InShop = false;
+        }
         if (collision.CompareTag("Elevator"))
         {
             InElevator = false;
         }
+    }
+    public void Move(bool active)
+    {
+        ableToMove = active;
     }
 }
