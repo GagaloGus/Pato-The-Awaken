@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Magnet
   itemDescription: A de atraer
-  itemSprite: {fileID: 21300000, guid: 201f4d09a9cc1d04fa17dc7c91845360, type: 3}
+  itemSprite: {fileID: 1531824445, guid: f1a6dd97bc9f4894693cb0331f8b3372, type: 3}
   itemActiveTime: 5
   ItemCost: 100

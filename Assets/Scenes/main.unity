@@ -628,6 +628,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f1f9cc3fa1a66754681798efdfdfedff, type: 2}
   - {fileID: 11400000, guid: df0606c836850f047ae06d2a6ead63cb, type: 2}
   - {fileID: 11400000, guid: cbe41a97eaa34c042b2dcc4de1b82450, type: 2}
+  - {fileID: 11400000, guid: 4a58ca8a49b957e44837811ddfa9b20a, type: 2}
+  - {fileID: 11400000, guid: aeb672b62d57fa54891731fdf26ffae8, type: 2}
+  - {fileID: 11400000, guid: 3a895a134f83482409668bf4b5838727, type: 2}
   itemContent: {fileID: 1140584065}
   itemButton: {fileID: 8025861611743069488, guid: ee4bb4c3d1d21cb47858f1bae78916ab, type: 3}
   itemSelectFrame: {fileID: 1330283101}
@@ -1993,7 +1996,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.000080609105, y: 0}
-  m_SizeDelta: {x: -0.00012207, y: 551.26}
+  m_SizeDelta: {x: 1450.12, y: 551.26}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1140584066
 MonoBehaviour:
@@ -4504,6 +4507,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3119241240135843394, guid: c6e7c223aa54f4a44a0b3e7259bf9caa, type: 3}
+      propertyPath: yPosition
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3119241240135843399, guid: c6e7c223aa54f4a44a0b3e7259bf9caa, type: 3}
       propertyPath: m_RootOrder
       value: 1

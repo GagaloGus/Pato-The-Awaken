@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Invencibility
   itemDescription: Makes the player inmune to enemy stuns
-  itemSprite: {fileID: -41467030, guid: 0e56d77e5b575104aab18e8f7df3e441, type: 3}
+  itemSprite: {fileID: -706164069, guid: f1a6dd97bc9f4894693cb0331f8b3372, type: 3}
   itemActiveTime: 8
   ItemCost: 50
