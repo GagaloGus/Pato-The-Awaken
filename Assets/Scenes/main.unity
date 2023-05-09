@@ -2379,8 +2379,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinText: {fileID: 988324454}
-  duckText: {fileID: 1976343276}
-  levelText: {fileID: 2052851595}
 --- !u!114 &1180668221
 MonoBehaviour:
   m_ObjectHideFlags: 0

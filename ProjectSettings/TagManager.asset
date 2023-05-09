@@ -13,6 +13,8 @@ TagManager:
   - enemyBonkBox
   - enemy
   - spider collider
+  - Shop
+  - Elevator
   layers:
   - Default
   - TransparentFX
