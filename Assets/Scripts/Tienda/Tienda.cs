@@ -1,23 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
 public class Tienda : MonoBehaviour
 {
     public int ItemSelected = 0;
-    ShopObject[] shop;
+    public GameObject ItemShop;
+    public InventoryObject[] shop;
     public GameObject[] Buttons;
     void Start()
     {
-        shop = new ShopObject[6];
-        shop[0] = new ShopObject("Objeto1", 20);
-        shop[1] = new ShopObject("Objeto2", 50);
-        shop[2] = new ShopObject("Objeto3", 75);
-        shop[3] = new ShopObject("Objeto4", 100);
-        shop[4] = new ShopObject("Objeto5", 150);
-        shop[5] = new ShopObject("Objeto6", 200);
-
+        ItemShop = transform.Find("DatosObject").gameObject;
         int count = 0;
         foreach(GameObject Obj in Buttons)
         {
@@ -30,17 +25,17 @@ public class Tienda : MonoBehaviour
 
     void Update()
     {
-       
+        
     }
 
     public void Comprar()
     {
         if(ItemSelected > -1)
         {
-            if (GameManager.instance.gm_coins >= shop[ItemSelected].GetValue())
+            if (GameManager.instance.gm_coins >= shop[ItemSelected].ItemCost)
             {
-                Debug.Log("Has comprado" + shop[ItemSelected].GetName() + " !");
-                GameManager.instance.AddCoin(-shop[ItemSelected].GetValue());
+                Debug.Log("Has comprado" + shop[ItemSelected].itemName + " !");
+                GameManager.instance.AddCoin(-shop[ItemSelected].ItemCost);
             }
 
             else
@@ -53,5 +48,12 @@ public class Tienda : MonoBehaviour
     public void SelectItem(GameObject A)
     {
         ItemSelected = int.Parse(A.name);
+        GameObject NameItem = ItemShop.transform.Find("NombreObject").gameObject;
+        GameObject SpriteItem = ItemShop.transform.Find("SpriteObject").gameObject;
+        GameObject CostItem = ItemShop.transform.Find("ValorObject").gameObject;
+
+        NameItem.GetComponent<TMP_Text>().text = shop[ItemSelected].itemName;
+        CostItem.GetComponent<TMP_Text>().text = shop[ItemSelected].ItemCost.ToString() + " Coins";
+        SpriteItem.GetComponent<Image>().sprite = shop[ItemSelected].itemSprite;
     }
 }

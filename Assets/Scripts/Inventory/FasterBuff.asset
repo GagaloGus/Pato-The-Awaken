@@ -16,3 +16,4 @@ MonoBehaviour:
   itemDescription: Increases the base speed of the player
   itemSprite: {fileID: 735329313, guid: 0e56d77e5b575104aab18e8f7df3e441, type: 3}
   itemActiveTime: 10
+  ItemCost: 75

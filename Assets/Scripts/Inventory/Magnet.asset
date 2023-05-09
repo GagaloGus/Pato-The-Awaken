@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4cff1469da10a24db888bc369479e8d, type: 3}
-  m_Name: DoubJumpBuff
+  m_Name: Magnet
   m_EditorClassIdentifier: 
-  itemName: Double Jump
-  itemDescription: Allows the player to double jump
-  itemSprite: {fileID: -1483533980, guid: 0e56d77e5b575104aab18e8f7df3e441, type: 3}
-  itemActiveTime: 10
-  ItemCost: 20
+  itemName: Magnet
+  itemDescription: A de atraer
+  itemSprite: {fileID: 21300000, guid: 201f4d09a9cc1d04fa17dc7c91845360, type: 3}
+  itemActiveTime: 5
+  ItemCost: 100

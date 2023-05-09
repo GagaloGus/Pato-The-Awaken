@@ -16,3 +16,4 @@ MonoBehaviour:
   itemDescription: Makes the player inmune to enemy stuns
   itemSprite: {fileID: -41467030, guid: 0e56d77e5b575104aab18e8f7df3e441, type: 3}
   itemActiveTime: 8
+  ItemCost: 50
