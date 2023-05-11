@@ -8,7 +8,7 @@ public class Player_Controller : MonoBehaviour
 
     float jumpPower = 15, jumpTimeCounter;
     public int jumpsAvaliable;
-    public float xPosition;
+    public float xPosition, yPosition;
 
     Rigidbody2D rb;
     public BoxCollider2D boxCol;
@@ -17,7 +17,7 @@ public class Player_Controller : MonoBehaviour
     enum PlayerStates { idle, run, up, down, glide}
     PlayerStates controlStates;
 
-    enum ActiveBuff { idle, doubleJump, fast, invincible}
+    enum ActiveBuff { idle, doubleJump, fast, invincible, magnet, balloon, random}
     ActiveBuff currentBuff;
 
     Animator animator;
@@ -222,6 +222,7 @@ public class Player_Controller : MonoBehaviour
                 GameManager.instance.gm_gamespeed *= speedMult;
                 xPosition += speedMult;
 
+                StopCoroutine(nameof(SpeedBoostTrail));
                 StartCoroutine(SpeedBoostTrail(inv.itemActiveTime));
 
                 AudioManager.instance.PlayMusic("Faster Buff");
@@ -229,9 +230,20 @@ public class Player_Controller : MonoBehaviour
             else if (inv.name == "InvenciBuff")
             {
                 currentBuff = ActiveBuff.invincible;
+                StopCoroutine(nameof(InvencibilityColorChange));
                 StartCoroutine(InvencibilityColorChange(inv.itemActiveTime));
 
                 AudioManager.instance.PlayMusic("Invincible");
+            }
+            else if (inv.name == "Magnet")
+            {
+                currentBuff = ActiveBuff.magnet;
+
+                StartCoroutine(InvencibilityColorChange(inv.itemActiveTime));
+            }
+            else if (inv.name == "Balloon")
+            {
+                currentBuff = ActiveBuff.balloon;
             }
 
             yield return new WaitForSeconds(inv.itemActiveTime);

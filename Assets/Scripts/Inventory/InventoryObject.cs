@@ -13,4 +13,5 @@ public class InventoryObject : ScriptableObject
     {
         FindObjectOfType<Player_Controller>().StartBuffCoroutine(this);
     }
+    public int ItemCost;
 }

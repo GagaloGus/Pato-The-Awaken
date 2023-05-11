@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4cff1469da10a24db888bc369479e8d, type: 3}
-  m_Name: DoubJumpBuff
+  m_Name: Balloon
   m_EditorClassIdentifier: 
-  itemName: Double Jump
-  itemDescription: Allows the player to double jump
-  itemSprite: {fileID: 680518250, guid: f1a6dd97bc9f4894693cb0331f8b3372, type: 3}
+  itemName: Balloon
+  itemDescription: U can fly
+  itemSprite: {fileID: 1748660608, guid: f1a6dd97bc9f4894693cb0331f8b3372, type: 3}
   itemActiveTime: 10
-  ItemCost: 20
+  ItemCost: 150
