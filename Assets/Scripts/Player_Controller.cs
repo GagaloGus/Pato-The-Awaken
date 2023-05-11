@@ -104,6 +104,11 @@ public class Player_Controller : MonoBehaviour
             {
                 StopCoroutine(nameof(DoubleJumpEffect));
                 StartCoroutine(DoubleJumpEffect());
+                AudioManager.instance.PlaySFX("Jump 2");
+            }
+            else
+            {
+                AudioManager.instance.PlaySFX("Jump");
             }
             jumpsAvaliable--;
             
@@ -129,7 +134,8 @@ public class Player_Controller : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && jumpsAvaliable == 0) { isGliding = !isGliding; }
 
         if (isGliding) 
-        { 
+        {
+            AudioManager.instance.PlaySFX("Glide");
             rb.gravityScale = 2; rb.drag = 3;
             controlStates = PlayerStates.glide; // El pato hace la animación de Planeo
         }
@@ -217,16 +223,21 @@ public class Player_Controller : MonoBehaviour
                 xPosition += speedMult;
 
                 StartCoroutine(SpeedBoostTrail(inv.itemActiveTime));
+
+                AudioManager.instance.PlayMusic("Faster Buff");
             }
             else if (inv.name == "InvenciBuff")
             {
                 currentBuff = ActiveBuff.invincible;
                 StartCoroutine(InvencibilityColorChange(inv.itemActiveTime));
+
+                AudioManager.instance.PlayMusic("Invincible");
             }
 
             yield return new WaitForSeconds(inv.itemActiveTime);
             print("back to normnal :(");
             currentBuff = ActiveBuff.idle;
+            
 
             if (inv.name == "FasterBuff")
             {
