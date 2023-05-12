@@ -3361,6 +3361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fdf6a2339cec00438076c83846bc03e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  holdingObject: {fileID: 0}
   Inventory: {fileID: 362732241}
   amountText: {fileID: 0}
 --- !u!1 &1340255706
@@ -4999,10 +5000,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3119241240135843394, guid: c6e7c223aa54f4a44a0b3e7259bf9caa, type: 3}
-      propertyPath: yPosition
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 3119241240135843399, guid: c6e7c223aa54f4a44a0b3e7259bf9caa, type: 3}
       propertyPath: m_RootOrder
       value: 1

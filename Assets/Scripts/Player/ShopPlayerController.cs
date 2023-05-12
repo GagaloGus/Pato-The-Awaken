@@ -16,7 +16,7 @@ public class ShopPlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         rend = GetComponent<SpriteRenderer>();
-        ableToMove = true;
+        ableToMove = false;
     }
 
     void Update()
@@ -26,7 +26,7 @@ public class ShopPlayerController : MonoBehaviour
             rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * 4;
         }
 
-        float NewScale = GameManager.instance.MapValues(transform.position.y, 0.6f, -4, 0.7f, 1);
+        float NewScale = GameManager.instance.MapValues(transform.position.y - transform.parent.transform.position.y, 0.6f, -4, 0.7f, 1);
         transform.localScale = Vector3.one * NewScale;
 
         if (Input.GetKey(KeyCode.A))
@@ -51,13 +51,22 @@ public class ShopPlayerController : MonoBehaviour
         {
             controlStates = PlayerStats.IdleFront;
         }
+
         animator.SetInteger("ControlShop", (int)controlStates);
+
         if (InShop == true && Input.GetKey(KeyCode.E))
         {
             ableToMove = false;
             FindObjectOfType<ShopUI>().Shop.SetActive(true);
         }
         FindObjectOfType<ShopUI>().KeySign.SetActive(InShop);
+        if (InElevator == true && Input.GetKey(KeyCode.E))
+        {
+            ableToMove = false;
+            transform.parent.gameObject.GetComponent<Animator>().Play("ElevatorUp");
+            GetComponent<BoxCollider2D>().enabled = false;
+            rb.velocity = Vector2.zero;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -69,6 +78,7 @@ public class ShopPlayerController : MonoBehaviour
         if (collision.CompareTag("Elevator"))
         {
             InElevator = true;
+            print("Estoy au ascensor");
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

@@ -38,6 +38,8 @@ public class Tienda : MonoBehaviour
             {
                 Debug.Log("Has comprado" + shop[ItemSelected].itemName + " !");
                 GameManager.instance.AddCoin(-shop[ItemSelected].ItemCost);
+                InventoryManager.instance.ChangeItemAmount(shop[ItemSelected].order, 1);
+                ItemShop.transform.Find("CantidadObject").gameObject.GetComponent<TMP_Text>().text = InventoryManager.instance.getItemAmount[ItemSelected].ToString();
             }
 
             else
