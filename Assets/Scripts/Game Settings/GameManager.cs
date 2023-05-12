@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     uint coins, ducks, level = 1;
     public bool gameStarted;
     float speedLevel;
+
+    
     void Awake()
     {
         if (!instance) //comprueba que instance no tenga informacion
@@ -23,6 +25,7 @@ public class GameManager : MonoBehaviour
 
         gameStarted = false;
         speedLevel = 0;
+
     }
     public void GameStarted()
     {

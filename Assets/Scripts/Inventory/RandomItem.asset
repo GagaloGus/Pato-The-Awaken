@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: RandomItem
   m_EditorClassIdentifier: 
   itemName: Random
-  itemDescription: Random
+  itemDescription: Random item :)
   itemSprite: {fileID: 37367971, guid: f1a6dd97bc9f4894693cb0331f8b3372, type: 3}
-  itemActiveTime: 0
+  itemActiveTime: 10
   ItemCost: 200
+  itemAmount: 0
+  order: 5

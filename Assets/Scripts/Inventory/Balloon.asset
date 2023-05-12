@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Balloon
   m_EditorClassIdentifier: 
   itemName: Balloon
-  itemDescription: U can fly
+  itemDescription: Keeps you floating at a certain height
   itemSprite: {fileID: 1748660608, guid: f1a6dd97bc9f4894693cb0331f8b3372, type: 3}
   itemActiveTime: 10
   ItemCost: 150
+  itemAmount: 0
+  order: 4

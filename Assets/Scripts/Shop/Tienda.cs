@@ -8,10 +8,12 @@ public class Tienda : MonoBehaviour
 {
     public int ItemSelected = 0;
     public GameObject ItemShop;
-    public InventoryObject[] shop;
+    InventoryObject[] shop;
     public GameObject[] Buttons;
     void Start()
     {
+        shop = InventoryManager.instance.items;
+
         ItemShop = transform.Find("DatosObject").gameObject;
         int count = 0;
         foreach(GameObject Obj in Buttons)
@@ -51,9 +53,11 @@ public class Tienda : MonoBehaviour
         GameObject NameItem = ItemShop.transform.Find("NombreObject").gameObject;
         GameObject SpriteItem = ItemShop.transform.Find("SpriteObject").gameObject;
         GameObject CostItem = ItemShop.transform.Find("ValorObject").gameObject;
+        GameObject CantObject = ItemShop.transform.Find("CantidadObject").gameObject;
 
         NameItem.GetComponent<TMP_Text>().text = shop[ItemSelected].itemName;
         CostItem.GetComponent<TMP_Text>().text = shop[ItemSelected].ItemCost.ToString() + " Coins";
         SpriteItem.GetComponent<Image>().sprite = shop[ItemSelected].itemSprite;
+        CantObject.GetComponent<TMP_Text>().text = InventoryManager.instance.getItemAmount[ItemSelected].ToString();
     }
 }

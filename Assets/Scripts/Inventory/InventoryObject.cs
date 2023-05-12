@@ -8,10 +8,11 @@ public class InventoryObject : ScriptableObject
     public string itemName, itemDescription;
     public Sprite itemSprite;
     public float itemActiveTime;
+    public int ItemCost, order;
 
     public void Use()
     {
         FindObjectOfType<Player_Controller>().StartBuffCoroutine(this);
     }
-    public int ItemCost;
+    
 }
