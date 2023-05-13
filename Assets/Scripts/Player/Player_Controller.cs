@@ -101,7 +101,7 @@ public class Player_Controller : Buffs_Player
             {
                 StopCoroutine(nameof(DoubleJumpEffect));
                 StartCoroutine(DoubleJumpEffect());
-                AudioManager.instance.PlaySFX("Jump 2");
+                AudioManager.instance.PlaySFX("Double Jump");
             }
             else
             {
@@ -156,11 +156,8 @@ public class Player_Controller : Buffs_Player
         {
             GameManager.instance.gm_coins++;
             Destroy(collision.gameObject);
-        }
-        if (collision.CompareTag("duck"))
-        {
-            GameManager.instance.gm_ducks++;
-            Destroy(collision.gameObject);
+
+            AudioManager.instance.PlaySFX("Coin");
         }
         if (collision.CompareTag("End level"))
         {
@@ -177,6 +174,8 @@ public class Player_Controller : Buffs_Player
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             Destroy(collision.transform.parent.gameObject);
             isGliding = false;
+
+            AudioManager.instance.PlaySFX("Stun");
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -187,6 +186,12 @@ public class Player_Controller : Buffs_Player
             {
                 StopCoroutine(nameof(EnemyStun));
                 StartCoroutine(EnemyStun(collision.gameObject));
+
+                AudioManager.instance.PlaySFX("Stun");
+            }
+            else
+            {
+                AudioManager.instance.PlaySFX("Invincible kill");
             }
             Destroy(collision.gameObject);
         }

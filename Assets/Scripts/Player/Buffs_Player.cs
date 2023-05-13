@@ -29,7 +29,7 @@ public class Buffs_Player : MonoBehaviour
                 StopCoroutine(nameof(SpeedBoostTrail));
                 StartCoroutine(SpeedBoostTrail(inv.itemActiveTime));
 
-                AudioManager.instance.PlayMusic("Faster Buff");
+                AudioManager.instance.PlayMusic("Fast Buff");
             }
             else if (inv.name == "InvenciBuff")
             {
@@ -42,15 +42,18 @@ public class Buffs_Player : MonoBehaviour
             else if (inv.name == "Magnet")
             {
                 currentBuff = ActiveBuff.magnet;
+                AudioManager.instance.PlaySFX("Magnet");
             }
             else if (inv.name == "Balloon")
             {
                 currentBuff = ActiveBuff.balloon;
+                AudioManager.instance.PlaySFX("Ballon");
             }
             else if (inv.name == "RandomItem")
             {
                 InventoryObject rnd = InventoryManager.instance.items[Random.Range(0, InventoryManager.instance.items.Length - 2)];
                 StartBuffCoroutine(rnd);
+                AudioManager.instance.PlaySFX("Random");
                 yield break;
             }
 

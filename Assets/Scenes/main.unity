@@ -153,11 +153,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSounds:
-  - Name: 
+  - Name: Start Theme
+    clip: {fileID: 0}
+  - Name: Running Theme
+    clip: {fileID: 0}
+  - Name: Shop Theme
+    clip: {fileID: 8300000, guid: a374ec5b50174ff4e9b003fb85dc939e, type: 3}
+  - Name: Fast buff
+    clip: {fileID: 8300000, guid: 473e3430aeef5224ea578f588500e1b8, type: 3}
+  - Name: Invincible
+    clip: {fileID: 8300000, guid: dc574758a0ce9ab43af618a261c77287, type: 3}
+  - Name: Game over
     clip: {fileID: 0}
   sfxSounds:
-  - Name: 
-    clip: {fileID: 0}
+  - Name: Button press
+    clip: {fileID: 8300000, guid: f17a02a8a004e9147b2a16cd36524346, type: 3}
+  - Name: Quack
+    clip: {fileID: 8300000, guid: 9827e79608abab74aa8256812f9013d2, type: 3}
+  - Name: Glide
+    clip: {fileID: 8300000, guid: 11cc4d1413762fa41bc1bc70a43b2799, type: 3}
+  - Name: Coin
+    clip: {fileID: 8300000, guid: b56c15007c4f6aa4eb8b289925ff008e, type: 3}
+  - Name: Game Over sfx
+    clip: {fileID: 8300000, guid: f341eaba409531a4eb5ac65906558a51, type: 3}
+  - Name: Jump
+    clip: {fileID: 8300000, guid: a45651f28865aa04699b7b5597682ad6, type: 3}
+  - Name: Stun
+    clip: {fileID: 8300000, guid: 832b7a1c7ce08514ba233fd413c698c2, type: 3}
+  - Name: Buy
+    clip: {fileID: 8300000, guid: ab4cbb360593e8e4b9edb9ca3004ee2c, type: 3}
+  - Name: Double Jump
+    clip: {fileID: 8300000, guid: e04676d6ca44f25438a065ae37f1b2b8, type: 3}
+  - Name: Magnet
+    clip: {fileID: 8300000, guid: 546809f5d2be71e4f9ff316268c3d969, type: 3}
+  - Name: Balloon
+    clip: {fileID: 8300000, guid: 069aab7465eca0047ad8853435cd4bc8, type: 3}
+  - Name: Random
+    clip: {fileID: 8300000, guid: ab4cbb360593e8e4b9edb9ca3004ee2c, type: 3}
+  - Name: Level Passed
+    clip: {fileID: 8300000, guid: ab4cbb360593e8e4b9edb9ca3004ee2c, type: 3}
+  - Name: Player walk shop
+    clip: {fileID: 8300000, guid: 5cb363b2ea1ef3b429bb3273adfa76df, type: 3}
+  - Name: Invincible kill
+    clip: {fileID: 8300000, guid: 0140809a73f3ebc45bc5cc52e991f5a2, type: 3}
+  - Name: Jump on enemy
+    clip: {fileID: 8300000, guid: 04b87c9e72cf32748a35c63495614987, type: 3}
   musicSource: {fileID: 0}
   sfxSource: {fileID: 0}
 --- !u!4 &46020247
@@ -1119,7 +1159,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1726277558}
-  - {fileID: 1940430526}
   - {fileID: 1699495692}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -2583,6 +2622,7 @@ RectTransform:
   - {fileID: 1330283102}
   - {fileID: 1414292169}
   - {fileID: 362732242}
+  - {fileID: 1940430526}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3951,7 +3991,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 519420032}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1699495693
 SpriteRenderer:
@@ -4296,6 +4336,90 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1854133904}
   m_CullTransparentMesh: 1
+--- !u!1 &1871156195
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1871156197}
+  - component: {fileID: 1871156196}
+  m_Layer: 0
+  m_Name: mesa4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1871156196
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871156195}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: fdb5c979d4580934e82523bf48facd8f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 59, y: 12.013184}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1871156197
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871156195}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.351619, y: 14.942027, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1882121914
 GameObject:
   m_ObjectHideFlags: 0
@@ -4461,12 +4585,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1940430525}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.28, y: 0, z: 10}
-  m_LocalScale: {x: 0.5026, y: 0.6471925, z: 1}
+  m_LocalPosition: {x: -678.24, y: 0, z: -1439.6399}
+  m_LocalScale: {x: 54.280796, y: 69.89678, z: 108}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 519420032}
-  m_RootOrder: 1
+  m_Father: {fileID: 1180668218}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1940430527
 MonoBehaviour:

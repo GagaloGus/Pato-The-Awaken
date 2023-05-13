@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class ShopUI : MonoBehaviour
 {
-    public GameObject KeySign, Shop;
+    public GameObject KeySignE, KeySignT, Shop;
     public void Start()
     {
         Shop = transform.Find("ShopUI").gameObject;
-        KeySign = transform.Find("Key Sign").gameObject;
+        KeySignE = transform.Find("Key Sign Elevator").gameObject;
+        KeySignT = transform.Find("Key Sign Tienda").gameObject;
     }
-
-    
 }
 
