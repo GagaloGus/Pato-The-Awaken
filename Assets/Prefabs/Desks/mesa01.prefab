@@ -130,7 +130,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 33, y: 12.004395}
+    oldSize: {x: 30.007326, y: 12}
     newSize: {x: 1, y: 0.8828125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1174,7 +1174,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: sebas
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7104856023470660089, guid: 58cebaee68ea88e40b7d1655b00e5805, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 58cebaee68ea88e40b7d1655b00e5805, type: 3}
 --- !u!4 &1027203197832049136 stripped
 Transform:

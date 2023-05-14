@@ -23,6 +23,7 @@ public class InventoryManager : MonoBehaviour
         for (int i = 0; i < itemAmount.Length; i++)
         {
             itemAmount[i] = Random.Range(0, 6);
+            items[i].order = i;
         }
     }
 

@@ -41,8 +41,6 @@ public class Inventory : MonoBehaviour
             //les da a cada item sus datos para que los almacenen localmente
             obj.GetComponent<ItemController>().Item = items[i];
 
-            items[i].order = i;
-
             //le da a cada boton su onClick correspondiente
             obj.GetComponent<Button>().onClick.AddListener(() => { ChangeFrameSprite(obj); });
         }
@@ -53,6 +51,12 @@ public class Inventory : MonoBehaviour
     {
         //coje el hijo sprite del itemframe y le cambia la imagen a la del item elejido
         itemSelectFrame.transform.Find("itemSpriteHolder").GetComponent<Image>().sprite = o.transform.Find("ItemSprite").GetComponent<Image>().sprite;
+
+        /*if(o.transform.Find("ItemName").GetComponent<TMP_Text>().text == "Invencibility")
+        {
+            Animator itemAnim = itemSelectFrame.transform.Find("itemSpriteHolder").gameObject.AddComponent<Animator>();
+            itemAnim.runtimeAnimatorController = InventoryManager.instance.starAnimator;
+        }*/
 
         //asigna el item al itemframe para que el jugador lo use
         itemSelectFrame.GetComponent<ItemFrame>().holdingObject = o;

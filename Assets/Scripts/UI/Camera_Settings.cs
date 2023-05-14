@@ -23,13 +23,5 @@ public class Camera_Settings : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, y, transform.position.z);
         }
-
     }
-
-    public void RestartLevel()
-    {
-        GameManager.instance.ChangeScene("main", false);
-    }
-
-    public void NextLevel() { GameManager.instance.ChangeScene("main", true); }
 }

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    uint coins, ducks, level = 1;
+    uint coins, level = 1;
     public bool gameStarted;
     float speedLevel;
 
@@ -33,24 +33,22 @@ public class GameManager : MonoBehaviour
         speedLevel = 13;
     }
 
-    public void CameraEndCutscene()
+    public void Death—okas()
     {
-        speedLevel = 0;
-        Camera.main.GetComponent<Camera_Settings>().followPlayer = false;
-        Camera.main.GetComponent<Animator>().Play("Camera_EndLevel");
+        FindObjectOfType<StartAndDeathMenu>().gameObject.GetComponent<Animator>().Play("Deathscreen");
+        speedLevel = 0; gameStarted = false;
     }
 
-    public void DiedCamera()
+    public void LevelComplete()
     {
-        speedLevel = 0;
-        Camera.main.GetComponent<Animator>().Play("Camera_DeathFade");
-        gameStarted = false;
+        FindObjectOfType<StartAndDeathMenu>().gameObject.GetComponent<Animator>().Play("Complet");
+        speedLevel = 0; 
+        Camera.main.GetComponent<Camera_Settings>().followPlayer = false;
     }
 
     public void ChangeScene(string sceneName, bool nextlevel)
     {
         SceneManager.LoadScene(sceneName);
-        ducks = 0;
         gameStarted = false; speedLevel = 0;
         if (nextlevel) { level++; }
     }
@@ -67,11 +65,6 @@ public class GameManager : MonoBehaviour
     {
         get { return coins; }
         set { coins = value; }
-    }
-    public uint gm_ducks
-    {
-        get { return ducks; }
-        set { ducks = value; }
     }
     public uint gm_level
     {

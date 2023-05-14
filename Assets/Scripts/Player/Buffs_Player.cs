@@ -9,10 +9,13 @@ public class Buffs_Player : MonoBehaviour
 
     public float xPosition;
 
+    public GameObject Magnet;
+
     public IEnumerator UseBuff(InventoryObject inv)
     {
         currentBuff = ActiveBuff.idle;
         float speedMult = 1;
+        float OGgamespeed = GameManager.instance.gm_gamespeed, OGXposition = xPosition;
 
         if (inv != null)
         {
@@ -42,6 +45,10 @@ public class Buffs_Player : MonoBehaviour
             else if (inv.name == "Magnet")
             {
                 currentBuff = ActiveBuff.magnet;
+                StopCoroutine(nameof(MagnetCircleCast));
+                StartCoroutine(MagnetCircleCast(inv.itemActiveTime));
+                Magnet.SetActive(true);
+
                 AudioManager.instance.PlaySFX("Magnet");
             }
             else if (inv.name == "Balloon")
@@ -61,11 +68,10 @@ public class Buffs_Player : MonoBehaviour
             print("back to normnal :(");
             currentBuff = ActiveBuff.idle;
 
-            if (inv.name == "FasterBuff")
-            {
-                GameManager.instance.gm_gamespeed /= speedMult;
-                xPosition -= speedMult;
-            }
+            GameManager.instance.gm_gamespeed = OGgamespeed; 
+            xPosition = OGXposition;
+
+            Magnet.SetActive(false);
 
         }
         else
@@ -87,7 +93,7 @@ public class Buffs_Player : MonoBehaviour
 
     protected IEnumerator SpeedBoostTrail(float useTime)
     {
-        for (int repeat = 0; repeat <= useTime * 6; repeat++)
+        for (float repeat = 0; repeat <= useTime; repeat+= useTime/100)
         {
             GameObject trail = new GameObject();
             SpriteRenderer sprtRend = trail.AddComponent<SpriteRenderer>();
@@ -100,7 +106,7 @@ public class Buffs_Player : MonoBehaviour
             for (float i = 0.5f; i >= 0; i -= 0.1f)
             {
                 sprtRend.color = new Color(0, 0, 0, i);
-                yield return new WaitForSeconds(0.025f);
+                yield return new WaitForSeconds(useTime/100);
             }
 
             Destroy(trail);
@@ -109,16 +115,32 @@ public class Buffs_Player : MonoBehaviour
 
     protected IEnumerator InvencibilityColorChange(float useTime)
     {
-        for (int repeat = 0; repeat <= useTime; repeat++)
+        for (float repeat = 0; repeat < useTime; repeat+= useTime/100)
         {
             //for se repite 100 veces
             for (float i = 0.01f; i < 1; i += 0.01f)
             {
-                GetComponent<SpriteRenderer>().color = Color.HSVToRGB(i, 0.82f, 1);
-                yield return new WaitForSeconds(0.005f);
+                GetComponent<SpriteRenderer>().color = Color.HSVToRGB(i, 0.82f, 0.1f);
+                yield return new WaitForSeconds(useTime/100);
             }
         }
         GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
+    protected IEnumerator MagnetCircleCast(float useTime)
+    {
+        for (float repeat = 0; repeat < useTime; repeat+= useTime/100)
+        {
+            RaycastHit2D[] coinsInRange = Physics2D.CircleCastAll(transform.position, 14, Vector2.up);
+
+            foreach(RaycastHit2D obj in coinsInRange)
+            {
+                GameObject coin = obj.transform.gameObject;
+                if (coin.CompareTag("coin")) { coin.transform.position = Vector2.MoveTowards(coin.transform.position, transform.position, 1); }
+            }
+
+            yield return new WaitForSeconds(useTime/100);
+        }
     }
 
     public void StartBuffCoroutine(InventoryObject inv)
