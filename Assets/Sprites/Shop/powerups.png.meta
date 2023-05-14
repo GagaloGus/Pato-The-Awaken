@@ -236,10 +236,10 @@ TextureImporter:
       name: powerups_5
       rect:
         serializedVersion: 2
-        x: 396
-        y: 771
-        width: 698
-        height: 673
+        x: 395
+        y: 772
+        width: 707
+        height: 667
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -259,8 +259,8 @@ TextureImporter:
         serializedVersion: 2
         x: 1119
         y: 791
-        width: 721
-        height: 659
+        width: 707
+        height: 667
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,10 +278,10 @@ TextureImporter:
       name: powerups_9
       rect:
         serializedVersion: 2
-        x: 1842
-        y: 820
-        width: 717
-        height: 669
+        x: 1843
+        y: 822
+        width: 707
+        height: 667
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -301,8 +301,8 @@ TextureImporter:
         serializedVersion: 2
         x: 2
         y: 55
-        width: 712
-        height: 676
+        width: 707
+        height: 667
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -320,10 +320,10 @@ TextureImporter:
       name: powerups_16
       rect:
         serializedVersion: 2
-        x: 725
-        y: 78
-        width: 709
-        height: 673
+        x: 726
+        y: 79
+        width: 707
+        height: 667
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -341,10 +341,10 @@ TextureImporter:
       name: powerups_18
       rect:
         serializedVersion: 2
-        x: 1447
-        y: 104
+        x: 1450
+        y: 105
         width: 703
-        height: 671
+        height: 667
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -364,8 +364,8 @@ TextureImporter:
         serializedVersion: 2
         x: 2154
         y: 104
-        width: 719
-        height: 664
+        width: 707
+        height: 667
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -375,6 +375,27 @@ TextureImporter:
       bones: []
       spriteID: 11c9b60ea4cba5b42836d981930d9cc0
       internalID: 1138650540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nothing
+      rect:
+        serializedVersion: 2
+        x: 2182
+        y: 2545
+        width: 114
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 441f4bd3aa6006e41b682480c44e4400
+      internalID: -394919609
       vertices: []
       indices: 
       edges: []
@@ -406,9 +427,9 @@ TextureImporter:
       powerups_15: -1703165099
       powerups_20: 1138650540
       powerups_5: -706164069
-      powerups_6: 347367899
-      powerups_11: -2003322389
       powerups_24: -917451898
+      powerups_11: -2003322389
+      nothing: 347367899
       powerups_22: -358864298
       powerups_16: 1950206065
       powerups_21: -1293727582

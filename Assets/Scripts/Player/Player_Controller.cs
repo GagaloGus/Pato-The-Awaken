@@ -23,6 +23,9 @@ public class Player_Controller : Buffs_Player
         rb = GetComponent<Rigidbody2D>(); boxCol = GetComponent<BoxCollider2D>();
         groundLayerMask = LayerMask.GetMask("Ground");
         animator = GetComponent<Animator>();
+
+        Magnet = transform.Find("Magnet").gameObject;
+        Magnet.SetActive(false);
     }
    
     void Update()
@@ -43,25 +46,12 @@ public class Player_Controller : Buffs_Player
             controlStates = PlayerStates.idle;
         } 
 
-        if(transform.position.y < -2)
+        if(transform.position.y < -2 || transform.position.x < -9)
         {
-            DeathCamera();
-        }
-
-        if (transform.position.x < -9)
-        {
-            DeathCamera();
+            GameManager.instance.DeathÑokas();
         }
     }
 
-    void DeathCamera()
-    {
-        GameManager.instance.DiedCamera();
-        ableToMove = false;
-        rb.gravityScale = 0; rb.velocity = Vector2.zero;
-        animator.SetInteger("Control", 1);
-        animator.Play("DeathNokas");
-    }
     float MaintainVelocity()
     {
         float newVel;
@@ -101,7 +91,7 @@ public class Player_Controller : Buffs_Player
             {
                 StopCoroutine(nameof(DoubleJumpEffect));
                 StartCoroutine(DoubleJumpEffect());
-                AudioManager.instance.PlaySFX("Jump 2");
+                AudioManager.instance.PlaySFX("Double Jump");
             }
             else
             {
@@ -132,7 +122,6 @@ public class Player_Controller : Buffs_Player
 
         if (isGliding) 
         {
-            AudioManager.instance.PlaySFX("Glide");
             rb.gravityScale = 2; rb.drag = 3;
             controlStates = PlayerStates.glide; // El pato hace la animación de Planeo
         }
@@ -156,11 +145,8 @@ public class Player_Controller : Buffs_Player
         {
             GameManager.instance.gm_coins++;
             Destroy(collision.gameObject);
-        }
-        if (collision.CompareTag("duck"))
-        {
-            GameManager.instance.gm_ducks++;
-            Destroy(collision.gameObject);
+
+            AudioManager.instance.PlaySFX("Coin");
         }
         if (collision.CompareTag("End level"))
         {
@@ -170,13 +156,15 @@ public class Player_Controller : Buffs_Player
             animator.SetInteger("Control", (int)PlayerStates.glide);
 
 
-            GameManager.instance.CameraEndCutscene();
+            GameManager.instance.LevelComplete();
         }
         if (collision.CompareTag("enemyBonkBox"))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             Destroy(collision.transform.parent.gameObject);
             isGliding = false;
+
+            AudioManager.instance.PlaySFX("Stun");
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -187,6 +175,12 @@ public class Player_Controller : Buffs_Player
             {
                 StopCoroutine(nameof(EnemyStun));
                 StartCoroutine(EnemyStun(collision.gameObject));
+
+                AudioManager.instance.PlaySFX("Stun");
+            }
+            else
+            {
+                AudioManager.instance.PlaySFX("Invincible kill");
             }
             Destroy(collision.gameObject);
         }

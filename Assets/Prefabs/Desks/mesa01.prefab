@@ -1174,7 +1174,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: sebas
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7104856023470660089, guid: 58cebaee68ea88e40b7d1655b00e5805, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 58cebaee68ea88e40b7d1655b00e5805, type: 3}
 --- !u!4 &1027203197832049136 stripped
 Transform:
