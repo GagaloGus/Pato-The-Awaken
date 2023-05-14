@@ -1015,6 +1015,10 @@ MonoBehaviour:
   - {fileID: 6340704355555101423, guid: d856bf244b268394aa7a87649a089bd2, type: 3}
   - {fileID: 8271959966348259291, guid: 3213fde30217535478d71c2915e2d90a, type: 3}
   - {fileID: 6169958159400293476, guid: 6007dab307123cc48ac1da9886430e4d, type: 3}
+  - {fileID: 8219809502935307312, guid: 71f3b9188024c824d9dc4a7a1e25cb63, type: 3}
+  - {fileID: 5218331611709270095, guid: 648db11f1af6d9d45b8561c2d5d531cb, type: 3}
+  - {fileID: 6455096287902061183, guid: 20fd3ec07e7e9f249807d8126ee5dca6, type: 3}
+  - {fileID: 2178808904376309713, guid: 7b21aab9918c6a74b96ae4b94498287c, type: 3}
   shuffledDesks: []
   mesaInicio: {fileID: 5097312472530059980, guid: ba47e82a7b8b91e4ebd4d813ee712b96, type: 3}
   mesaFinal: {fileID: 6639945518697313732, guid: 52b7cba0205d78c4d92eba3d34425c5c, type: 3}
