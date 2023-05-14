@@ -1784,7 +1784,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -550023855, guid: fea236a14e5539f4b8b6aac94a5db088, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1822,6 +1822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae4aedbef11cc844185702bc5f6e6e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  patoshoppo: {fileID: 0}
 --- !u!1 &734432075
 GameObject:
   m_ObjectHideFlags: 0
@@ -3475,7 +3476,7 @@ GameObject:
   - component: {fileID: 1922527321}
   - component: {fileID: 1922527322}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Canvas shop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

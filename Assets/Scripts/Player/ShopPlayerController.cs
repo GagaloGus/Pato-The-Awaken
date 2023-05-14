@@ -8,6 +8,8 @@ public class ShopPlayerController : MonoBehaviour
     SpriteRenderer rend;
     Rigidbody2D rb;
 
+    GameObject bancoPato;
+
     enum PlayerStats { IdleFront, WalkShop, WalkFront, WalkUpFront, Elevetor}
     PlayerStats controlStates;
     Animator animator;
@@ -17,6 +19,10 @@ public class ShopPlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         rend = GetComponent<SpriteRenderer>();
         ableToMove = false;
+
+        bancoPato = FindObjectOfType<BancoPato>().gameObject;
+        bancoPato.GetComponent<BancoPato>().patoshoppo = this.gameObject;
+        bancoPato.SetActive(false);
     }
 
     void Update()
@@ -48,7 +54,8 @@ public class ShopPlayerController : MonoBehaviour
             }
             else if (InBanco)
             {
-                FindObjectOfType<BancoPato>().gameObject.GetComponent<Animator>().Play("Sentao");
+                bancoPato.SetActive(true); bancoPato.GetComponent<Animator>().Play("Sentao");
+                shopcanvas.transform.Find("Key Sign Banco").gameObject.SetActive(false);
                 gameObject.SetActive(false);
             }
         }

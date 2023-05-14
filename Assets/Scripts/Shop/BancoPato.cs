@@ -5,14 +5,12 @@ using UnityEngine;
 public class BancoPato : MonoBehaviour
 {
     Animator animator;
-    GameObject patoshoppo;
+    public GameObject patoshoppo;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         animator.SetBool("clicked", false);
-
-        patoshoppo = FindObjectOfType<ShopPlayerController>().gameObject;
     }
 
     private void Update()
@@ -22,9 +20,8 @@ public class BancoPato : MonoBehaviour
 
     public void RestartCharacter()
     {
-        patoshoppo.SetActive(true);
-        GetComponent<SpriteRenderer>().enabled = false;
+        patoshoppo.SetActive(true); patoshoppo.transform.position = new Vector2(-4.28f, -2.06f); patoshoppo.GetComponent<ShopPlayerController>().ableToMove = true;
         animator.SetBool("clicked", false);
-        animator.Play("idle");
+        gameObject.SetActive(false);
     }
 }

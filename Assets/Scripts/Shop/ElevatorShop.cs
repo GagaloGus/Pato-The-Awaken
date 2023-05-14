@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class ElevatorShop : MonoBehaviour
 {
-    void Update()
-    {
-        
-    }
-
     public void EnableColider()
     {
         FindObjectOfType<ShopPlayerController>().GetComponent<Collider2D>().enabled = true;
