@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Desk_Random : MonoBehaviour
 {
     public GameObject[] allDesks, shuffledDesks;
-    public GameObject mesaInicio, mesaFinal;
+    public GameObject mesaInicio, mesaFinal, mesaTienda;
     public int amountDesksGenerated;
     float EndPos, StartPos;
 
@@ -20,7 +20,7 @@ public class Desk_Random : MonoBehaviour
         GameObject[] resizeArray = new GameObject[amountDesksGenerated + 2];
         shuffledDesks.CopyTo(resizeArray, 0); shuffledDesks = resizeArray;
 
-        shuffledDesks[0] = mesaInicio; shuffledDesks[shuffledDesks.Length - 1] = mesaFinal;
+        shuffledDesks[0] = mesaInicio; shuffledDesks[shuffledDesks.Length - 1] = mesaFinal; 
 
         int rnd_aux = 0;
         //randomiza las mesas generadas
@@ -34,9 +34,9 @@ public class Desk_Random : MonoBehaviour
                 rnd_aux = rnd;
                 shuffledDesks[i] = allDesks[rnd];
         }
-
+        shuffledDesks[(int)Mathf.Round(shuffledDesks.Length / 2)] = mesaTienda;
         //instancia las mesas generadas para que esten en fila
-        for(int i = 0; i < shuffledDesks.Length; i++)
+        for (int i = 0; i < shuffledDesks.Length; i++)
         {
             GameObject desk = Instantiate(shuffledDesks[i], Vector3.up*5 + deskParent.position, Quaternion.identity, deskParent);
 
