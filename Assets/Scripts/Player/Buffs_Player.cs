@@ -11,7 +11,7 @@ public class Buffs_Player : MonoBehaviour
 
     public float xPosition;
 
-    public GameObject Magnet, Balloons;
+    protected GameObject Magnet, Balloons;
 
     public IEnumerator UseBuff(InventoryObject inv)
     {

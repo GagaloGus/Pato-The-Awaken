@@ -10,7 +10,7 @@ public class Player_Controller : Buffs_Player
     public int jumpsAvaliable;
 
     Rigidbody2D rb;
-    public BoxCollider2D boxCol;
+    BoxCollider2D boxCol;
     LayerMask groundLayerMask;
 
     enum PlayerStates { idle, run, up, down, glide}
@@ -66,11 +66,7 @@ public class Player_Controller : Buffs_Player
 
          isGrounded = boxcasteo.collider;
     }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position + new Vector3(boxCol.offset.x, boxCol.offset.y - 0.25f, 0), boxCol.size / 1.25f);
-    }
+
     void Ground()
     {
         rb.gravityScale = 7; rb.drag = 0;
