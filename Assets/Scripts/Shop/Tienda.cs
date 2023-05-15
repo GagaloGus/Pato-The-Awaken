@@ -40,17 +40,22 @@ public class Tienda : MonoBehaviour
                 GameManager.instance.AddCoin(-shop[ItemSelected].ItemCost);
                 InventoryManager.instance.ChangeItemAmount(shop[ItemSelected].order, 1);
                 ItemShop.transform.Find("CantidadObject").gameObject.GetComponent<TMP_Text>().text = InventoryManager.instance.getItemAmount[ItemSelected].ToString();
+
+                AudioManager.instance.PlaySFX("Buy");
             }
 
             else
             {
                 Debug.Log("Aun no tienes el suficiente dinero!");
+                AudioManager.instance.PlaySFX("Not enough coins");
             }
         }
     }
 
     public void SelectItem(GameObject A)
     {
+        AudioManager.instance.PlaySFX("Button press");
+
         ItemSelected = int.Parse(A.name);
         GameObject NameItem = ItemShop.transform.Find("NombreObject").gameObject;
         GameObject SpriteItem = ItemShop.transform.Find("SpriteObject").gameObject;

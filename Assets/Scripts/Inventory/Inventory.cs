@@ -41,8 +41,6 @@ public class Inventory : MonoBehaviour
             //les da a cada item sus datos para que los almacenen localmente
             obj.GetComponent<ItemController>().Item = items[i];
 
-            items[i].order = i;
-
             //le da a cada boton su onClick correspondiente
             obj.GetComponent<Button>().onClick.AddListener(() => { ChangeFrameSprite(obj); });
         }
@@ -58,6 +56,8 @@ public class Inventory : MonoBehaviour
         itemSelectFrame.GetComponent<ItemFrame>().holdingObject = o;
 
         itemSelectFrame.GetComponent<ItemFrame>().amountText.SetActive(true);
+
+        AudioManager.instance.PlaySFX("Equip item");
 
         //oculta el inventario
         InventoryGO.SetActive(false);
