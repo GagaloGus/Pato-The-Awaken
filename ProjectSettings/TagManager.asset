@@ -15,6 +15,7 @@ TagManager:
   - Shop
   - Elevator
   - Banco
+  - ShopEnter
   layers:
   - Default
   - TransparentFX

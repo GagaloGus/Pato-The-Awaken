@@ -163,6 +163,12 @@ public class Player_Controller : Buffs_Player
 
             AudioManager.instance.PlaySFX("Stun");
         }
+        if (collision.CompareTag("ShopEnter"))
+        {
+           ableToMove = false;
+            GameManager.instance.ChangeScene("Shop", true);
+
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
