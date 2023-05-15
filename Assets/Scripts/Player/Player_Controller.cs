@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player_Controller : Buffs_Player
 {
-    bool isGrounded, isJumping, isGliding;
+    bool isGrounded, isJumping, isGliding, isShopping = false;
 
     float jumpPower = 15, jumpTimeCounter;
     public int jumpsAvaliable;
@@ -49,7 +49,7 @@ public class Player_Controller : Buffs_Player
             controlStates = PlayerStates.idle;
         } 
 
-        if(transform.position.y < -2 || transform.position.x < -9)
+        if(isShopping == false &&(transform.position.y < -2 || transform.position.x < -9))
         {
             GameManager.instance.DeathÑokas();
         }
@@ -165,9 +165,9 @@ public class Player_Controller : Buffs_Player
         }
         if (collision.CompareTag("ShopEnter"))
         {
-           ableToMove = false;
-            GameManager.instance.ChangeScene("Shop", true);
-
+            isShopping = true;
+            GameManager.instance.gm_gamespeed = 0;
+            FindObjectOfType<StartAndDeathMenu>().gameObject.GetComponent<Animator>().Play("EnterShop");
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)

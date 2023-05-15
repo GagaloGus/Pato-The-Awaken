@@ -9,4 +9,14 @@ public class ElevatorShop : MonoBehaviour
         FindObjectOfType<ShopPlayerController>().GetComponent<Collider2D>().enabled = true;
         FindObjectOfType<ShopPlayerController>().GetComponent<ShopPlayerController>().ableToMove = true;
     }
+    
+    public void EnterShop()
+    {
+        FindObjectOfType<Canvas>().GetComponentInChildren<Animator>().Play("FadeInShop");
+    }
+
+    public void OutShop()
+    {
+        FindObjectOfType<Canvas>().GetComponentInChildren<Animator>().Play("FadeOutShop");
+    }
 }
