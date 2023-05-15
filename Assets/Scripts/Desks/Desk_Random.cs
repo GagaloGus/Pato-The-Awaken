@@ -12,6 +12,8 @@ public class Desk_Random : MonoBehaviour
 
     public Transform deskParent;
     public Slider LevelSlider;
+
+    public Sprite[] bookSprites;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,23 +47,29 @@ public class Desk_Random : MonoBehaviour
             for (int count = 0; count < i ; count++)
             {
                 if (count == 0) { nextXPosition += shuffledDesks[count].GetComponent<SpriteRenderer>().bounds.size.x / 2; }
-                else { nextXPosition += shuffledDesks[count].GetComponent<SpriteRenderer>().bounds.size.x; }
+                else { nextXPosition += shuffledDesks[count].GetComponent<SpriteRenderer>().bounds.size.x + 1; }
             }
 
             if (i > 0)
             {
-                desk.transform.position = new Vector3(nextXPosition + desk.GetComponent<SpriteRenderer>().bounds.size.x / 2 + 3, 5, 0) + deskParent.position;
-                EndPos = nextXPosition + desk.GetComponent<SpriteRenderer>().bounds.size.x / 3 + 3;
+                desk.transform.position = new Vector3(nextXPosition + desk.GetComponent<SpriteRenderer>().bounds.size.x / 2 , 5, 0) + deskParent.position;
+                EndPos = nextXPosition + desk.GetComponent<SpriteRenderer>().bounds.size.x / 3 + 1;
             }
+        }
+
+        GameObject[] books = GameObject.FindGameObjectsWithTag("libro");
+        foreach(GameObject booj in books)
+        {
+            booj.GetComponent<SpriteRenderer>().sprite = bookSprites[Random.Range(0, bookSprites.Length - 1)];
         }
     }
 
-    public float rnd;
     private void Update()
     {
         transform.Translate(Vector3.left * GameManager.instance.gm_gamespeed * Time.deltaTime);
         LevelSlider.value = GameManager.instance.MapValues(transform.position.x, StartPos, -EndPos, 0, 1);
 
-        fondo.transform.position = new Vector2(GameManager.instance.MapValues(transform.position.x, StartPos, -EndPos, 10, -5.3f), fondo.transform.position.y);
+        if(transform.position.x > -EndPos)
+        fondo.transform.position = new Vector2(GameManager.instance.MapValues(transform.position.x, StartPos, -EndPos, 12.3f, -7.7f), fondo.transform.position.y);
     }
 }

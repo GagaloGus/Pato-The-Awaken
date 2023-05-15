@@ -16,6 +16,7 @@ TagManager:
   - Elevator
   - Banco
   - ShopEnter
+  - libro
   layers:
   - Default
   - TransparentFX

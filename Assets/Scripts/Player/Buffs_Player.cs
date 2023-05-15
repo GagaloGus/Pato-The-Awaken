@@ -158,7 +158,7 @@ public class Buffs_Player : MonoBehaviour
 
         GetComponent<Animator>().SetInteger("Control", 3);
 
-        Vector2 destination = new Vector2(xPosition, 11);
+        Vector2 destination = new Vector2(xPosition, 14);
 
         for (int repeat = 0; repeat < Mathf.Infinity; repeat++)
         {

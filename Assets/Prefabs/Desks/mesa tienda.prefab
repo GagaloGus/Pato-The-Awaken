@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 209758308758982397}
   - component: {fileID: 7994193255627297213}
   m_Layer: 3
-  m_Name: mesa tienda (1) (1) 1 1 1
+  m_Name: mesa tienda
   m_TagString: suelo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,7 +86,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 18.980465, y: -2.8208401, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2289060926737430983}
   m_Father: {fileID: 0}
