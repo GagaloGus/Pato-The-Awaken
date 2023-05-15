@@ -376,10 +376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xPosition: 0.5
-  Magnet: {fileID: 0}
-  Balloons: {fileID: 0}
   jumpsAvaliable: 0
-  boxCol: {fileID: 3119241240135843395}
 --- !u!50 &3119241240135843420
 Rigidbody2D:
   serializedVersion: 4

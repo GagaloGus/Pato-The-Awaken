@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player_Controller : Buffs_Player
 {
-    bool isGrounded, isJumping, isGliding;
+    bool isGrounded, isJumping, isGliding, inShopRange;
 
     float jumpPower = 15, jumpTimeCounter;
     public int jumpsAvaliable;
@@ -13,7 +13,7 @@ public class Player_Controller : Buffs_Player
     BoxCollider2D boxCol;
     LayerMask groundLayerMask;
 
-    enum PlayerStates { idle, run, up, down, glide, outofshop}
+    enum PlayerStates { idle, run, up, down, glide, walk}
     PlayerStates controlStates;
 
     Animator animator;
@@ -35,13 +35,34 @@ public class Player_Controller : Buffs_Player
     {
         BoxCasting();
 
-        if (ableToMove && !PauseMenu.isPaused && GameManager.instance.gameStarted)
+        if (ableToMove && !PauseMenu.isPaused)
         {
-            rb.velocity = new Vector2(MaintainVelocity(), rb.velocity.y);
-            if (isGrounded) { Ground(); }
-            else { Air(); }
-            Jump();
-            animator.SetInteger("Control", (int)controlStates);
+            if (GameManager.instance.gameStarted)
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+                rb.velocity = new Vector2(MaintainVelocity(), rb.velocity.y);
+                if (isGrounded) { Ground(); }
+                else { Air(); }
+                Jump();
+                animator.SetInteger("Control", (int)controlStates);
+            }
+            else
+            {
+                float velocity = Input.GetAxisRaw("Horizontal");
+                rb.velocity = Vector2.right * velocity * 5;
+                
+                if(velocity != 0) { controlStates = PlayerStates.walk; print("andao"); } else { controlStates = PlayerStates.idle; }
+                animator.SetInteger("Control", (int)controlStates);
+
+                if (velocity < 0) { GetComponent<SpriteRenderer>().flipX = true; } else if (velocity > 0) { GetComponent<SpriteRenderer>().flipX = false; }
+
+                transform.position = new Vector2(Mathf.Clamp(transform.position.x, -5.7f, 10.4f), transform.position.y);
+
+                FindObjectOfType<PuertaInicio>().TKey.SetActive(inShopRange);
+
+                if(transform.position.x > -3.2f) { inShopRange = false; } else { inShopRange = true; }
+                FindObjectOfType<PuertaInicio>().TKey.SetActive(inShopRange);
+            }
         }
 
         if (!GameManager.instance.gameStarted) // Cuando el juego está en el inicio El pato está con la animación Idle
@@ -51,7 +72,6 @@ public class Player_Controller : Buffs_Player
 
         if(transform.position.y < -2 || transform.position.x < -9)
         {
-            AudioManager.instance.musicSource.Stop();
             GameManager.instance.DeathÑokas();
         }
     }
@@ -153,7 +173,6 @@ public class Player_Controller : Buffs_Player
             ableToMove = false;
             animator.SetInteger("Control", (int)PlayerStates.glide);
 
-
             GameManager.instance.LevelComplete();
         }
         if (collision.CompareTag("enemyBonkBox"))
@@ -162,9 +181,11 @@ public class Player_Controller : Buffs_Player
             Destroy(collision.transform.parent.gameObject);
             isGliding = false;
 
-            AudioManager.instance.PlaySFX("Stun");
+            AudioManager.instance.PlaySFX("Jump on enemy");
         }
     }
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("enemy"))
@@ -204,5 +225,10 @@ public class Player_Controller : Buffs_Player
     {
         GameManager.instance.GameStarted();
         ableToMove = true;
+    }
+
+    public void PlayWalkSFX()
+    {
+        AudioManager.instance.PlaySFX("Player walk shop");
     }
 }

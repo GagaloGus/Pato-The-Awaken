@@ -23,6 +23,8 @@ public class ShopPlayerController : MonoBehaviour
         bancoPato = FindObjectOfType<BancoPato>().gameObject;
         bancoPato.GetComponent<BancoPato>().patoshoppo = this.gameObject;
         bancoPato.SetActive(false);
+
+        AudioManager.instance.PlayMusic("Shop Theme");
     }
 
     void Update()

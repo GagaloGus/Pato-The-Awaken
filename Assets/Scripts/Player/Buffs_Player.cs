@@ -140,7 +140,7 @@ public class Buffs_Player : MonoBehaviour
             foreach(RaycastHit2D obj in coinsInRange)
             {
                 GameObject coin = obj.transform.gameObject;
-                if (coin.CompareTag("coin")) { coin.transform.position = Vector2.MoveTowards(coin.transform.position, transform.position, GameManager.instance.gm_gamespeed/50); }
+                if (coin.CompareTag("coin")) { coin.transform.position = Vector2.MoveTowards(coin.transform.position, transform.position, GameManager.instance.gm_gamespeed/20); }
             }
 
             yield return new WaitForSeconds(Time.deltaTime);

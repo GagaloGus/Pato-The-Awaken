@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ElevatorShop : MonoBehaviour
 {
+
     public void EnableColider()
     {
         FindObjectOfType<ShopPlayerController>().GetComponent<Collider2D>().enabled = true;
@@ -23,6 +24,7 @@ public class ElevatorShop : MonoBehaviour
     public void ExitShop()
     {
         GameManager.instance.ChangeScene("main", false);
+    }
     public void ShopMusic()
     {
         AudioManager.instance.PlayMusic("Shop Music");

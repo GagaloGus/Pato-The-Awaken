@@ -32,10 +32,12 @@ public class StartAndDeathMenu : MonoBehaviour
         }
     }
 
-    public void DeathSound()
+    public void DeathSFX()
     {
+        AudioManager.instance.musicSource.Stop();
         AudioManager.instance.PlaySFX("Dead Player");
     }
+
     public void GameOverSound()
     {
         AudioManager.instance.PlaySFX("Game Over sfx");
@@ -47,16 +49,10 @@ public class StartAndDeathMenu : MonoBehaviour
 
     public void CompletMusic()
     {
+        AudioManager.instance.musicSource.Stop();
         AudioManager.instance.PlayMusic("Final Theme");
     }
-    public void FinalMusicStop()
-    {
-        AudioManager.instance.musicSource.Stop();
-    }
-    public void LevelMusicStop()
-    {
-        AudioManager.instance.musicSource.Stop();
-    }
+
 
     public void StartLevel()
     {

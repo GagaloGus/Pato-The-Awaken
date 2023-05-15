@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3256013614299852067}
   m_Layer: 3
   m_Name: Tienda
-  m_TagString: Untagged
+  m_TagString: ShopEnter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,8 @@ Transform:
   m_LocalPosition: {x: -5.1247, y: -2.3876, z: 0}
   m_LocalScale: {x: 1.2300099, y: 1.2300099, z: 1.2300099}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 5850079537691291543}
   m_Father: {fileID: 7728260060188896097}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -72,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1161658929
-  m_SortingLayer: 5
+  m_SortingLayerID: -1500217941
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 415609840, guid: fddc4dcd272ab9d4f9e35b5dd8241e1c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.9843137}
@@ -99,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clicked: 0
+  TKey: {fileID: 0}
 --- !u!95 &3256013614299852067
 Animator:
   serializedVersion: 4
@@ -151,7 +153,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4544856978172494352}
-  - {fileID: 5850079537691291543}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -257,7 +258,7 @@ GameObject:
   - component: {fileID: 6286154059283641073}
   - component: {fileID: 8786551681191785711}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Key T
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -271,12 +272,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6999498946393642284}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.47, y: 0.71, z: 0}
-  m_LocalScale: {x: 0.45562044, y: 0.45562044, z: 0.45562044}
+  m_LocalPosition: {x: -0.2807292, y: 2.5183535, z: 0}
+  m_LocalScale: {x: 0.3704201, y: 0.3704201, z: 0.3704201}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7728260060188896097}
-  m_RootOrder: 1
+  m_Father: {fileID: 4544856978172494352}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6286154059283641073
 SpriteRenderer:

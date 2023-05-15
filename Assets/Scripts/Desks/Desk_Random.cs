@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Desk_Random : MonoBehaviour
 {
     public GameObject[] allDesks, shuffledDesks;
-    public GameObject mesaInicio, mesaFinal, mesaTienda, fondo;
+    public GameObject mesaInicio, mesaFinal, fondo;
     public int amountDesksGenerated;
     float EndPos, StartPos;
 
@@ -37,7 +37,6 @@ public class Desk_Random : MonoBehaviour
                 rnd_aux = rnd;
                 shuffledDesks[i] = allDesks[rnd];
         }
-        shuffledDesks[(int)Mathf.Round(shuffledDesks.Length / 2)] = mesaTienda;
         //instancia las mesas generadas para que esten en fila
         for (int i = 0; i < shuffledDesks.Length; i++)
         {
