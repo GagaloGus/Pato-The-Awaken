@@ -51,5 +51,10 @@ public class StartAndDeathMenu : MonoBehaviour
         GameManager.instance.ChangeScene("main", false);
     }
 
+    public void EnterShop()
+    {
+        GameManager.instance.ChangeScene("Shop", false);
+    }
+
     public void ExitGame() { Application.Quit(); }
 }
