@@ -40,6 +40,7 @@ public class ItemFrame : MonoBehaviour
     {
         if (!GameManager.instance.gameStarted)
         {
+            AudioManager.instance.PlaySFX("Button press");
             Inventory.SetActive(true);
         }
         else

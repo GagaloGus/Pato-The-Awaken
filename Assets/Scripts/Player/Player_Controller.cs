@@ -51,6 +51,7 @@ public class Player_Controller : Buffs_Player
 
         if(transform.position.y < -2 || transform.position.x < -9)
         {
+            AudioManager.instance.musicSource.Stop();
             GameManager.instance.DeathÑokas();
         }
     }

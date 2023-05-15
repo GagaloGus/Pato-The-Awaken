@@ -337,6 +337,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: dc574758a0ce9ab43af618a261c77287, type: 3}
   - Name: Game over
     clip: {fileID: 0}
+  - Name: Shop Music
+    clip: {fileID: 8300000, guid: 382a67a963ed0d448ba4c2ada0351bdb, type: 3}
   sfxSounds:
   - Name: Button press
     clip: {fileID: 8300000, guid: f17a02a8a004e9147b2a16cd36524346, type: 3}

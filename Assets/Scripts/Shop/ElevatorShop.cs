@@ -23,5 +23,12 @@ public class ElevatorShop : MonoBehaviour
     public void ExitShop()
     {
         GameManager.instance.ChangeScene("main", false);
+    public void ShopMusic()
+    {
+        AudioManager.instance.PlayMusic("Shop Music");
+    }
+    public void ShopMusicStop()
+    {
+        AudioManager.instance.musicSource.Stop();
     }
 }

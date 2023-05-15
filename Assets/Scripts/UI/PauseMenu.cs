@@ -25,6 +25,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        AudioManager.instance.PlaySFX("Button press");
         if (GameManager.instance.gameStarted)
         {
             Time.timeScale = 0;
@@ -34,6 +35,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void Resume()
     {
+        AudioManager.instance.PlaySFX("Button press");
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
         isPaused = false;
@@ -41,7 +43,9 @@ public class PauseMenu : MonoBehaviour
 
     public void Restart()
     {
+        AudioManager.instance.PlaySFX("Button press");
         Time.timeScale = 1;
         GameManager.instance.ChangeScene("Main", false);
     }
+
 }
