@@ -32,10 +32,37 @@ public class StartAndDeathMenu : MonoBehaviour
         }
     }
 
+    public void DeathSound()
+    {
+        AudioManager.instance.PlaySFX("Dead Player");
+    }
+    public void GameOverSound()
+    {
+        AudioManager.instance.PlaySFX("Game Over sfx");
+    }
+    public void IntroMusic()
+    {
+        AudioManager.instance.PlayMusic("Start Theme");
+    }
+
+    public void CompletMusic()
+    {
+        AudioManager.instance.PlayMusic("Final Theme");
+    }
+    public void FinalMusicStop()
+    {
+        AudioManager.instance.musicSource.Stop();
+    }
+    public void LevelMusicStop()
+    {
+        AudioManager.instance.musicSource.Stop();
+    }
+
     public void StartLevel()
     {
         if (!clicked_start)
         {
+            AudioManager.instance.PlaySFX("Button press");
             startLogo.GetComponent<Animator>().Play("startlogo_leave");
             clicked_start = true;
         }
@@ -48,6 +75,7 @@ public class StartAndDeathMenu : MonoBehaviour
 
     public void RestartLevel()
     {
+        AudioManager.instance.PlaySFX("Button press");
         GameManager.instance.ChangeScene("main", false);
     }
 

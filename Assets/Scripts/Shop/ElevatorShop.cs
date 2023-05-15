@@ -19,4 +19,12 @@ public class ElevatorShop : MonoBehaviour
     {
         FindObjectOfType<Canvas>().GetComponentInChildren<Animator>().Play("FadeOutShop");
     }
+    public void ShopMusic()
+    {
+        AudioManager.instance.PlayMusic("Shop Music");
+    }
+    public void ShopMusicStop()
+    {
+        AudioManager.instance.musicSource.Stop();
+    }
 }

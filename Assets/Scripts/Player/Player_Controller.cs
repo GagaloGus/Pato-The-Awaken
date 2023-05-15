@@ -49,8 +49,9 @@ public class Player_Controller : Buffs_Player
             controlStates = PlayerStates.idle;
         } 
 
-        if(isShopping == false &&(transform.position.y < -2 || transform.position.x < -9))
+        if(transform.position.y < -2 || transform.position.x < -9)
         {
+            AudioManager.instance.musicSource.Stop();
             GameManager.instance.DeathÑokas();
         }
     }
