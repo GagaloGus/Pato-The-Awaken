@@ -1022,8 +1022,8 @@ MonoBehaviour:
   shuffledDesks: []
   mesaInicio: {fileID: 5097312472530059980, guid: ba47e82a7b8b91e4ebd4d813ee712b96, type: 3}
   mesaFinal: {fileID: 6639945518697313732, guid: 52b7cba0205d78c4d92eba3d34425c5c, type: 3}
-  mesaTienda: {fileID: 7104358412437286677, guid: 0ae8de8addbb8ca44978f0c39642a167, type: 3}
-  amountDesksGenerated: 50
+  mesaTienda: {fileID: 7583827868489409348, guid: ea06d7cc64e34314890a2e6e65e2754a, type: 3}
+  amountDesksGenerated: 4
   deskParent: {fileID: 462735519}
   LevelSlider: {fileID: 1129039729}
 --- !u!4 &462735519
