@@ -5,7 +5,7 @@ using UnityEngine;
 public class Camera_Settings : MonoBehaviour
 {
     GameObject player;
-    public float HeightDif, ymin;
+    public float HeightDif, ymin, ymax;
 
     public bool followPlayer;
     // Start is called before the first frame update
@@ -18,7 +18,7 @@ public class Camera_Settings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float y = Mathf.Clamp(player.transform.position.y - HeightDif, ymin, Mathf.Infinity);
+        float y = Mathf.Clamp(player.transform.position.y - HeightDif, ymin, ymax);
         if (followPlayer)
         {
             transform.position = new Vector3(transform.position.x, y, transform.position.z);
