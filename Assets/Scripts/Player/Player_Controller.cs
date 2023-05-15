@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player_Controller : Buffs_Player
 {
-    bool isGrounded, isJumping, isGliding, isShopping = false;
+    bool isGrounded, isJumping, isGliding;
 
     float jumpPower = 15, jumpTimeCounter;
     public int jumpsAvaliable;
@@ -13,7 +13,7 @@ public class Player_Controller : Buffs_Player
     BoxCollider2D boxCol;
     LayerMask groundLayerMask;
 
-    enum PlayerStates { idle, run, up, down, glide}
+    enum PlayerStates { idle, run, up, down, glide, outofshop}
     PlayerStates controlStates;
 
     Animator animator;
@@ -49,7 +49,7 @@ public class Player_Controller : Buffs_Player
             controlStates = PlayerStates.idle;
         } 
 
-        if(isShopping == false &&(transform.position.y < -2 || transform.position.x < -9))
+        if(transform.position.y < -2 || transform.position.x < -9)
         {
             GameManager.instance.DeathÑokas();
         }
@@ -163,12 +163,6 @@ public class Player_Controller : Buffs_Player
 
             AudioManager.instance.PlaySFX("Stun");
         }
-        if (collision.CompareTag("ShopEnter"))
-        {
-            isShopping = true;
-            GameManager.instance.gm_gamespeed = 0;
-            FindObjectOfType<StartAndDeathMenu>().gameObject.GetComponent<Animator>().Play("EnterShop");
-        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -199,5 +193,15 @@ public class Player_Controller : Buffs_Player
         ableToMove = true;
     }
 
+    public bool player_abletomove
+    {
+        get { return ableToMove; }
+        set { ableToMove = value; }
+    }
 
+    public void Outofdoor()
+    {
+        GameManager.instance.GameStarted();
+        ableToMove = true;
+    }
 }

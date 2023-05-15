@@ -19,4 +19,9 @@ public class ElevatorShop : MonoBehaviour
     {
         FindObjectOfType<Canvas>().GetComponentInChildren<Animator>().Play("FadeOutShop");
     }
+
+    public void ExitShop()
+    {
+        GameManager.instance.ChangeScene("main", false);
+    }
 }

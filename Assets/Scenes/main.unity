@@ -226,8 +226,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 1b766cffec96e4844a27166d4d5a352b, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1694,8 +1694,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f4b9c5b65e82dce4f97b1352cb24898a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2358,8 +2358,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 31429f3318930d049b3d6fc14efa0bf8, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3768,9 +3768,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fdf6a2339cec00438076c83846bc03e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdingObject: {fileID: 0}
   Inventory: {fileID: 362732241}
   amountText: {fileID: 0}
+  holdingObject: {fileID: 0}
 --- !u!1 &1340255706
 GameObject:
   m_ObjectHideFlags: 0
@@ -4137,8 +4137,6 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 0140809a73f3ebc45bc5cc52e991f5a2, type: 3}
   - Name: Game Over sfx
     clip: {fileID: 8300000, guid: f341eaba409531a4eb5ac65906558a51, type: 3}
-  - Name: Level Passed
-    clip: {fileID: 8300000, guid: ab4cbb360593e8e4b9edb9ca3004ee2c, type: 3}
   - Name: Coin
     clip: {fileID: 8300000, guid: b56c15007c4f6aa4eb8b289925ff008e, type: 3}
   - Name: Buy
@@ -5205,6 +5203,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3119241240135843392, guid: c6e7c223aa54f4a44a0b3e7259bf9caa, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3119241240135843399, guid: c6e7c223aa54f4a44a0b3e7259bf9caa, type: 3}
       propertyPath: m_RootOrder
       value: 2

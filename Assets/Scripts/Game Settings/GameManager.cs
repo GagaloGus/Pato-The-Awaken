@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     public bool gameStarted;
     float speedLevel;
 
-    
     void Awake()
     {
         if (!instance) //comprueba que instance no tenga informacion
@@ -52,6 +51,26 @@ public class GameManager : MonoBehaviour
         gameStarted = false; speedLevel = 0;
         if (nextlevel) { level++; }
     }
+
+    /*public void ExitShopScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+        gameStarted = false; speedLevel = 0;
+
+        //coje el hijo sprite del itemframe y le cambia la imagen a la del item elejido
+        FindObjectOfType<ItemFrame>().gameObject.transform.Find("itemSpriteHolder").GetComponent<UnityEngine.UI.Image>().sprite = heldObject.itemSprite;
+
+        //asigna el item al itemframe para que el jugador lo use
+        FindObjectOfType<ItemFrame>().GetComponent<ItemFrame>().holdingObject = heldObject;
+
+        FindObjectOfType<Desk_Random>().gameObject.transform.position = new Vector2(middleDistance, FindObjectOfType<Desk_Random>().gameObject.transform.position.y);
+
+        GameObject player = FindObjectOfType<Player_Controller>().gameObject;
+        player.GetComponent<Player_Controller>().player_abletomove = false;
+        player.GetComponent<Animator>().SetInteger("Control", 5);
+
+        FindObjectOfType<StartAndDeathMenu>().gameObject.GetComponent<Animator>().Play("Aftershop");
+    }*/
 
     public void AddCoin(int value)
     {

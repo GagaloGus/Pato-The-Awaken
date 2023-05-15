@@ -6,8 +6,10 @@ using TMPro;
 
 public class ItemFrame : MonoBehaviour
 {
-    public GameObject holdingObject ,Inventory, amountText;
+    public GameObject Inventory, amountText;
     GameObject cooldownText;
+
+    public InventoryObject holdingObject;
 
     int itemOrderNum;
 
@@ -27,7 +29,7 @@ public class ItemFrame : MonoBehaviour
             Inventory.SetActive(!Inventory.activeInHierarchy);
         }
 
-        itemOrderNum = holdingObject.GetComponent<ItemController>().Item.order;
+        itemOrderNum = holdingObject.order;
 
         //cambia el texto de los usos del objeto
         amountText.GetComponent<TMP_Text>().text = InventoryManager.instance.getItemAmount[itemOrderNum].ToString();
@@ -46,10 +48,10 @@ public class ItemFrame : MonoBehaviour
             if(holdingObject != null) 
             { 
                 //usa el item que tiene
-                holdingObject.GetComponent<ItemController>().Item.Use();
+                holdingObject.Use();
 
                 //activa el cooldown
-                StartCoroutine(ItemUseCooldown(holdingObject.GetComponent<ItemController>().Item.itemActiveTime));
+                StartCoroutine(ItemUseCooldown(holdingObject.itemActiveTime));
 
                 //reduce la cantidad de items por 1
                 InventoryManager.instance.ChangeItemAmount(itemOrderNum, -1);

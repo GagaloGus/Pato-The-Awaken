@@ -42,18 +42,18 @@ public class Inventory : MonoBehaviour
             obj.GetComponent<ItemController>().Item = items[i];
 
             //le da a cada boton su onClick correspondiente
-            obj.GetComponent<Button>().onClick.AddListener(() => { ChangeFrameSprite(obj); });
+            obj.GetComponent<Button>().onClick.AddListener(() => { ChangeFrameSprite(obj.GetComponent<ItemController>().Item); });
         }
 
     }
 
-    void ChangeFrameSprite(GameObject o)
+    public void ChangeFrameSprite(InventoryObject invObj)
     {
         //coje el hijo sprite del itemframe y le cambia la imagen a la del item elejido
-        itemSelectFrame.transform.Find("itemSpriteHolder").GetComponent<Image>().sprite = o.transform.Find("ItemSprite").GetComponent<Image>().sprite;
+        itemSelectFrame.transform.Find("itemSpriteHolder").GetComponent<Image>().sprite = invObj.itemSprite;
 
         //asigna el item al itemframe para que el jugador lo use
-        itemSelectFrame.GetComponent<ItemFrame>().holdingObject = o;
+        itemSelectFrame.GetComponent<ItemFrame>().holdingObject = invObj;
 
         itemSelectFrame.GetComponent<ItemFrame>().amountText.SetActive(true);
 
