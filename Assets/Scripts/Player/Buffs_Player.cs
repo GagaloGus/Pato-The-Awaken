@@ -7,14 +7,15 @@ public class Buffs_Player : MonoBehaviour
     protected enum ActiveBuff { idle, doubleJump, fast, invincible, magnet, balloon, random }
     protected ActiveBuff currentBuff;
 
+    protected bool ableToMove = true;
+
     public float xPosition;
 
-    public GameObject Magnet;
+    public GameObject Magnet, Balloons;
 
     public IEnumerator UseBuff(InventoryObject inv)
     {
         currentBuff = ActiveBuff.idle;
-        float speedMult = 1;
         float OGgamespeed = GameManager.instance.gm_gamespeed, OGXposition = xPosition;
 
         if (inv != null)
@@ -22,45 +23,46 @@ public class Buffs_Player : MonoBehaviour
             if (inv.name == "DoubJumpBuff")
             {
                 currentBuff = ActiveBuff.doubleJump;
+                AudioManager.instance.PlaySFX("Use boioing");
             }
             else if (inv.name == "FasterBuff")
             {
-                currentBuff = ActiveBuff.fast; speedMult = 1.5f;
-                GameManager.instance.gm_gamespeed *= speedMult;
-                xPosition += speedMult;
+                currentBuff = ActiveBuff.fast;
+                GameManager.instance.gm_gamespeed *= 1.5f;
+                xPosition += 1.5f;
+                StartCoroutine(SpeedBoostTrail());
 
-                StopCoroutine(nameof(SpeedBoostTrail));
-                StartCoroutine(SpeedBoostTrail(inv.itemActiveTime));
-
+                AudioManager.instance.PlaySFX("Use fast");
                 AudioManager.instance.PlayMusic("Fast Buff");
             }
             else if (inv.name == "InvenciBuff")
             {
                 currentBuff = ActiveBuff.invincible;
-                StopCoroutine(nameof(InvencibilityColorChange));
-                StartCoroutine(InvencibilityColorChange(inv.itemActiveTime));
+                StartCoroutine(InvencibilityColorChange());
+                GameManager.instance.gm_gamespeed *= 1.2f;
+                xPosition += 1.2f;
 
+                AudioManager.instance.PlaySFX("Use star");
                 AudioManager.instance.PlayMusic("Invincible");
             }
             else if (inv.name == "Magnet")
             {
                 currentBuff = ActiveBuff.magnet;
-                StopCoroutine(nameof(MagnetCircleCast));
-                StartCoroutine(MagnetCircleCast(inv.itemActiveTime));
-                Magnet.SetActive(true);
+                StartCoroutine(MagnetCircleCast());
 
                 AudioManager.instance.PlaySFX("Magnet");
             }
             else if (inv.name == "Balloon")
             {
                 currentBuff = ActiveBuff.balloon;
-                AudioManager.instance.PlaySFX("Ballon");
+                StartCoroutine(BalloonHold());
+
+                AudioManager.instance.PlaySFX("Balloon");
             }
             else if (inv.name == "RandomItem")
             {
                 InventoryObject rnd = InventoryManager.instance.items[Random.Range(0, InventoryManager.instance.items.Length - 2)];
                 StartBuffCoroutine(rnd);
-                AudioManager.instance.PlaySFX("Random");
                 yield break;
             }
 
@@ -68,10 +70,8 @@ public class Buffs_Player : MonoBehaviour
             print("back to normnal :(");
             currentBuff = ActiveBuff.idle;
 
-            GameManager.instance.gm_gamespeed = OGgamespeed; 
+            GameManager.instance.gm_gamespeed = OGgamespeed;
             xPosition = OGXposition;
-
-            Magnet.SetActive(false);
 
         }
         else
@@ -91,9 +91,9 @@ public class Buffs_Player : MonoBehaviour
         }
     }
 
-    protected IEnumerator SpeedBoostTrail(float useTime)
+    protected IEnumerator SpeedBoostTrail()
     {
-        for (float repeat = 0; repeat <= useTime; repeat+= useTime/100)
+        for (int repeat = 0; repeat < Mathf.Infinity; repeat++)
         {
             GameObject trail = new GameObject();
             SpriteRenderer sprtRend = trail.AddComponent<SpriteRenderer>();
@@ -106,40 +106,72 @@ public class Buffs_Player : MonoBehaviour
             for (float i = 0.5f; i >= 0; i -= 0.1f)
             {
                 sprtRend.color = new Color(0, 0, 0, i);
-                yield return new WaitForSeconds(useTime/100);
+                yield return new WaitForSeconds(Time.deltaTime*2);   
             }
-
             Destroy(trail);
+
+            if (currentBuff == ActiveBuff.idle) { yield break; }
         }
     }
 
-    protected IEnumerator InvencibilityColorChange(float useTime)
+    protected IEnumerator InvencibilityColorChange()
     {
-        for (float repeat = 0; repeat < useTime; repeat+= useTime/100)
+        for (int repeat = 0; repeat < Mathf.Infinity; repeat++)
         {
             //for se repite 100 veces
             for (float i = 0.01f; i < 1; i += 0.01f)
             {
-                GetComponent<SpriteRenderer>().color = Color.HSVToRGB(i, 0.82f, 0.1f);
-                yield return new WaitForSeconds(useTime/100);
+                GetComponent<SpriteRenderer>().color = Color.HSVToRGB(i, 0.82f, 0.9f);
+                yield return new WaitForSeconds(Time.deltaTime);
+
+                if (currentBuff == ActiveBuff.idle) { GetComponent<SpriteRenderer>().color = Color.white; yield break; }
             }
         }
-        GetComponent<SpriteRenderer>().color = Color.white;
+
     }
 
-    protected IEnumerator MagnetCircleCast(float useTime)
+    protected IEnumerator MagnetCircleCast()
     {
-        for (float repeat = 0; repeat < useTime; repeat+= useTime/100)
+        Magnet.SetActive(true);
+        for (int repeat = 0; repeat < Mathf.Infinity; repeat++)
         {
-            RaycastHit2D[] coinsInRange = Physics2D.CircleCastAll(transform.position, 14, Vector2.up);
+            RaycastHit2D[] coinsInRange = Physics2D.CircleCastAll(transform.position, 9, Vector2.up);
 
             foreach(RaycastHit2D obj in coinsInRange)
             {
                 GameObject coin = obj.transform.gameObject;
-                if (coin.CompareTag("coin")) { coin.transform.position = Vector2.MoveTowards(coin.transform.position, transform.position, 1); }
+                if (coin.CompareTag("coin")) { coin.transform.position = Vector2.MoveTowards(coin.transform.position, transform.position, GameManager.instance.gm_gamespeed/50); }
             }
 
-            yield return new WaitForSeconds(useTime/100);
+            yield return new WaitForSeconds(Time.deltaTime);
+
+            if (currentBuff == ActiveBuff.idle) { Magnet.SetActive(false); yield break; }
+        }
+    }
+
+    protected IEnumerator BalloonHold()
+    {
+        Balloons.SetActive(true); 
+        GetComponent<BoxCollider2D>().enabled = false; 
+        ableToMove = false;
+        GetComponent<Rigidbody2D>().gravityScale = 0; GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+        GetComponent<Animator>().SetInteger("Control", 3);
+
+        Vector2 destination = new Vector2(xPosition, 15);
+
+        for (int repeat = 0; repeat < Mathf.Infinity; repeat++)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, destination, Vector2.Distance(transform.position, destination)/50 );
+            yield return new WaitForSeconds(Time.deltaTime);
+
+            if (currentBuff == ActiveBuff.idle) { 
+                Balloons.SetActive(false);
+                GetComponent<BoxCollider2D>().enabled = true;
+                ableToMove = true;
+
+                yield break; 
+            }
         }
     }
 

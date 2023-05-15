@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player_Controller : Buffs_Player
 {
-    bool ableToMove = true, isGrounded, isJumping, isGliding;
+    bool isGrounded, isJumping, isGliding;
 
     float jumpPower = 15, jumpTimeCounter;
     public int jumpsAvaliable;
@@ -26,6 +26,9 @@ public class Player_Controller : Buffs_Player
 
         Magnet = transform.Find("Magnet").gameObject;
         Magnet.SetActive(false);
+
+        Balloons = transform.Find("Balloon").gameObject;
+        Balloons.SetActive(false);
     }
    
     void Update()
@@ -54,9 +57,7 @@ public class Player_Controller : Buffs_Player
 
     float MaintainVelocity()
     {
-        float newVel;
-        newVel = -transform.position.x / 2 + xPosition;
-        return newVel;
+        return -transform.position.x / 2 + xPosition;
     }
     void BoxCasting()
     {

@@ -188,16 +188,22 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 546809f5d2be71e4f9ff316268c3d969, type: 3}
   - Name: Balloon
     clip: {fileID: 8300000, guid: 069aab7465eca0047ad8853435cd4bc8, type: 3}
-  - Name: Random
-    clip: {fileID: 8300000, guid: ab4cbb360593e8e4b9edb9ca3004ee2c, type: 3}
   - Name: Level Passed
     clip: {fileID: 8300000, guid: ab4cbb360593e8e4b9edb9ca3004ee2c, type: 3}
   - Name: Player walk shop
     clip: {fileID: 8300000, guid: 5cb363b2ea1ef3b429bb3273adfa76df, type: 3}
   - Name: Invincible kill
     clip: {fileID: 8300000, guid: 0140809a73f3ebc45bc5cc52e991f5a2, type: 3}
-  - Name: Jump on enemy
-    clip: {fileID: 8300000, guid: 04b87c9e72cf32748a35c63495614987, type: 3}
+  - Name: Use star
+    clip: {fileID: 8300000, guid: 3d8f6ab6b9afc3848b6193f76e4c7478, type: 3}
+  - Name: Use fast
+    clip: {fileID: 8300000, guid: bb2f139d5bd9af74d83413e187ef5bfd, type: 3}
+  - Name: Use boioing
+    clip: {fileID: 8300000, guid: dd5f9f761508dc940a78bfa8efec6eaf, type: 3}
+  - Name: Equip item
+    clip: {fileID: 8300000, guid: a5fa5e3b485d7d9448d7b353d4d2fc31, type: 3}
+  - Name: bep
+    clip: {fileID: 8300000, guid: d05f71d62771e41448036bfc7b4d4281, type: 3}
   musicSource: {fileID: 0}
   sfxSource: {fileID: 0}
 --- !u!4 &46020247
@@ -1063,7 +1069,7 @@ MonoBehaviour:
   mesaInicio: {fileID: 5097312472530059980, guid: ba47e82a7b8b91e4ebd4d813ee712b96, type: 3}
   mesaFinal: {fileID: 6639945518697313732, guid: 52b7cba0205d78c4d92eba3d34425c5c, type: 3}
   mesaTienda: {fileID: 7104358412437286677, guid: 0ae8de8addbb8ca44978f0c39642a167, type: 3}
-  amountDesksGenerated: 50
+  amountDesksGenerated: 10
   deskParent: {fileID: 462735519}
   LevelSlider: {fileID: 1129039729}
 --- !u!4 &462735519

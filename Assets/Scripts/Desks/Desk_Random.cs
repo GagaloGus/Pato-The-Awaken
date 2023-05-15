@@ -49,8 +49,8 @@ public class Desk_Random : MonoBehaviour
 
             if (i > 0)
             {
-                desk.transform.position = new Vector3(nextXPosition + desk.GetComponent<SpriteRenderer>().bounds.size.x / 2, 5, 0) + deskParent.position;
-                EndPos = nextXPosition + desk.GetComponent<SpriteRenderer>().bounds.size.x / 3;
+                desk.transform.position = new Vector3(nextXPosition + desk.GetComponent<SpriteRenderer>().bounds.size.x / 2 + 3, 5, 0) + deskParent.position;
+                EndPos = nextXPosition + desk.GetComponent<SpriteRenderer>().bounds.size.x / 3 + 3;
             }
         }
     }

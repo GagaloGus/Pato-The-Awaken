@@ -52,16 +52,12 @@ public class Inventory : MonoBehaviour
         //coje el hijo sprite del itemframe y le cambia la imagen a la del item elejido
         itemSelectFrame.transform.Find("itemSpriteHolder").GetComponent<Image>().sprite = o.transform.Find("ItemSprite").GetComponent<Image>().sprite;
 
-        /*if(o.transform.Find("ItemName").GetComponent<TMP_Text>().text == "Invencibility")
-        {
-            Animator itemAnim = itemSelectFrame.transform.Find("itemSpriteHolder").gameObject.AddComponent<Animator>();
-            itemAnim.runtimeAnimatorController = InventoryManager.instance.starAnimator;
-        }*/
-
         //asigna el item al itemframe para que el jugador lo use
         itemSelectFrame.GetComponent<ItemFrame>().holdingObject = o;
 
         itemSelectFrame.GetComponent<ItemFrame>().amountText.SetActive(true);
+
+        AudioManager.instance.PlaySFX("Equip item");
 
         //oculta el inventario
         InventoryGO.SetActive(false);
