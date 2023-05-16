@@ -70,6 +70,7 @@ public class Buffs_Player : MonoBehaviour
             print("back to normnal :(");
             currentBuff = ActiveBuff.idle;
 
+            GetComponent<SpriteRenderer>().color = Color.white;
             GameManager.instance.gm_gamespeed = OGgamespeed;
             xPosition = OGXposition;
 
@@ -124,7 +125,7 @@ public class Buffs_Player : MonoBehaviour
                 GetComponent<SpriteRenderer>().color = Color.HSVToRGB(i, 0.82f, 0.9f);
                 yield return new WaitForSeconds(Time.deltaTime);
 
-                if (currentBuff == ActiveBuff.idle) { GetComponent<SpriteRenderer>().color = Color.white; yield break; }
+                if (currentBuff == ActiveBuff.idle) { yield break; }
             }
         }
 
@@ -170,6 +171,7 @@ public class Buffs_Player : MonoBehaviour
                 GetComponent<BoxCollider2D>().enabled = true;
                 ableToMove = true;
 
+                AudioManager.instance.PlayMusic("Level Theme");
                 yield break; 
             }
         }

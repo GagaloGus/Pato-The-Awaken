@@ -15,7 +15,6 @@ MonoBehaviour:
   itemName: Magnet
   itemDescription: Coins will move towards you
   itemSprite: {fileID: 1531824445, guid: f1a6dd97bc9f4894693cb0331f8b3372, type: 3}
-  itemActiveTime: 5
+  itemActiveTime: 25
   ItemCost: 100
-  itemAmount: 0
   order: 3
