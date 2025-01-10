@@ -78,7 +78,6 @@ public class ShopPlayerController : MonoBehaviour
         if (collision.CompareTag("Elevator"))
         {
             InElevator = true;
-            print("Estoy au ascensor");
         }
         if (collision.CompareTag("Banco"))
         {

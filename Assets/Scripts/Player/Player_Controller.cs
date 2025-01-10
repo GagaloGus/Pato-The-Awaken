@@ -51,16 +51,20 @@ public class Player_Controller : Buffs_Player
                 float velocity = Input.GetAxisRaw("Horizontal");
                 rb.velocity = Vector2.right * velocity * 5;
                 
-                if(velocity != 0) { controlStates = PlayerStates.walk; print("andao"); } else { controlStates = PlayerStates.idle; }
+                if(velocity != 0) { controlStates = PlayerStates.walk;} 
+                else { controlStates = PlayerStates.idle; }
+
                 animator.SetInteger("Control", (int)controlStates);
 
-                if (velocity < 0) { GetComponent<SpriteRenderer>().flipX = true; } else if (velocity > 0) { GetComponent<SpriteRenderer>().flipX = false; }
+                if (velocity < 0) { GetComponent<SpriteRenderer>().flipX = true; } 
+                else if (velocity > 0) { GetComponent<SpriteRenderer>().flipX = false; }
 
                 transform.position = new Vector2(Mathf.Clamp(transform.position.x, -5.7f, 10.4f), transform.position.y);
 
                 FindObjectOfType<PuertaInicio>().TKey.SetActive(inShopRange);
 
-                if(transform.position.x > -3.2f) { inShopRange = false; } else { inShopRange = true; }
+                inShopRange = transform.position.x < -3.2f;
+
                 FindObjectOfType<PuertaInicio>().TKey.SetActive(inShopRange);
             }
         }

@@ -14,6 +14,12 @@ public class Desk_Random : MonoBehaviour
     public Slider LevelSlider;
 
     public Sprite[] bookSprites;
+
+    private void Awake()
+    {
+        allDesks = Resources.LoadAll<GameObject>("Desks");
+    }
+
     // Start is called before the first frame update
     void Start()
     {

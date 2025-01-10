@@ -29,7 +29,7 @@ public class ItemFrame : MonoBehaviour
             Inventory.SetActive(!Inventory.activeInHierarchy);
         }
 
-        itemOrderNum = holdingObject.order;
+        itemOrderNum = holdingObject != null ? holdingObject.order : 0;
 
         //cambia el texto de los usos del objeto
         amountText.GetComponent<TMP_Text>().text = InventoryManager.instance.getItemAmount[itemOrderNum].ToString();
